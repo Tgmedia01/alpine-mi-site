@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services v2 — Alpine MI</title>
+<meta name="description" content="Alpine MI capability matrix — Swiss grid concept.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+:root{--col-gap:1.25rem}
+
+/* GRID OVERLAY */
+.grid-overlay{position:fixed;inset:0;pointer-events:none;z-index:1;display:grid;grid-template-columns:repeat(12,1fr);gap:0;padding:0 var(--pad)}
+.grid-overlay span{border-left:1px dashed rgba(0,0,0,.06);height:100%}
+.grid-overlay span:first-child{border-left:none}
+
+/* ─── HERO ─── */
+.v2hero{position:relative;padding:9rem var(--pad) 0;border-bottom:2px solid var(--ink);z-index:2}
+.v2hero-coord{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--col-gap);font-family:var(--fm);font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);padding-bottom:.85rem;border-bottom:1px solid var(--rule);margin-bottom:2.5rem}
+.v2hero-coord b{color:var(--ink);font-weight:600}
+.v2hero-coord span{display:flex;flex-direction:column;gap:.15rem}
+.v2hero-coord span:nth-child(1){grid-column:1/4}
+.v2hero-coord span:nth-child(2){grid-column:4/7}
+.v2hero-coord span:nth-child(3){grid-column:7/10}
+.v2hero-coord span:nth-child(4){grid-column:10/13;text-align:right;align-items:flex-end}
+
+.v2hero-stack{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--col-gap);align-items:end;padding-bottom:3rem}
+.v2hero-stack .label{grid-column:1/3;font-family:var(--fm);font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);writing-mode:vertical-rl;transform:rotate(180deg);padding-bottom:1rem;border-right:2px solid var(--ink);align-self:stretch}
+.v2hero-stack .ttl{grid-column:3/13;font-family:var(--fd);font-weight:700;font-size:clamp(4rem,15.5vw,17rem);line-height:.78;letter-spacing:-.07em;text-transform:uppercase}
+.v2hero-stack .ttl em{font-style:normal;font-weight:400;color:var(--mid)}
+.v2hero-stack .ttl .acc{color:var(--teal);font-weight:700}
+.v2hero-stack .ttl .slash{color:var(--teal);font-weight:400;margin:0 .04em}
+
+.v2hero-foot{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--col-gap);padding:1.5rem 0;border-top:1px solid var(--rule);align-items:start}
+.v2hero-foot .a{grid-column:1/4;font-family:var(--fm);font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);line-height:1.7}
+.v2hero-foot .a b{color:var(--ink);font-weight:600}
+.v2hero-foot .b{grid-column:4/9;font-family:var(--fd);font-weight:500;font-size:1.18rem;line-height:1.45;color:var(--ink);letter-spacing:-.012em}
+.v2hero-foot .b u{text-decoration:none;background:var(--teal);padding:0 .15em;color:var(--ink)}
+.v2hero-foot .c{grid-column:9/13;font-family:var(--fm);font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);text-align:right;line-height:1.7}
+.v2hero-foot .c b{color:var(--ink);font-weight:600}
+
+/* ─── CAPABILITY MATRIX SUMMARY ─── */
+.cap-matrix{padding:5rem var(--pad) 4rem;border-bottom:2px solid var(--ink);background:var(--paper);position:relative;z-index:2}
+.cap-matrix .ch{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--col-gap);padding-bottom:1.25rem;border-bottom:1px solid var(--rule);font-family:var(--fm);font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--mid)}
+.cap-matrix .ch b{color:var(--ink);font-weight:600}
+.cap-matrix .ch span{display:block}
+.cap-matrix .ch .h1{grid-column:1/3}
+.cap-matrix .ch .h2{grid-column:3/7}
+.cap-matrix .ch .h3{grid-column:7/9}
+.cap-matrix .ch .h4{grid-column:9/11}
+.cap-matrix .ch .h5{grid-column:11/13}
+.cap-matrix .cr{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--col-gap);padding:1.4rem 0;border-bottom:1px solid var(--rule);align-items:center;font-family:var(--fm);font-size:.78rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);cursor:pointer;transition:padding-left .25s var(--ease)}
+.cap-matrix .cr:hover{padding-left:1rem}
+.cap-matrix .cr .r1{grid-column:1/3;font-family:var(--fm);font-size:.7rem;font-weight:500;letter-spacing:.08em;color:var(--mid)}
+.cap-matrix .cr .r1 b{color:var(--ink);font-weight:600}
+.cap-matrix .cr .r2{grid-column:3/7;font-family:var(--fd);font-size:1.55rem;font-weight:700;letter-spacing:-.025em;line-height:1;text-transform:uppercase}
+.cap-matrix .cr .r2 em{font-style:normal;font-weight:400;color:var(--mid);transition:color .25s}
+.cap-matrix .cr:hover .r2 em{color:var(--teal)}
+.cap-matrix .cr .r3{grid-column:7/9;color:var(--ink)}
+.cap-matrix .cr .r4{grid-column:9/11;color:var(--ink)}
+.cap-matrix .cr .r5{grid-column:11/13;text-align:right;font-family:var(--fd);font-size:1.4rem;color:var(--ink);transition:transform .35s var(--ease),color .25s;font-weight:500}
+.cap-matrix .cr:hover .r5{color:var(--teal);transform:translate(8px,-3px)}
+
+/* ─── SERVICE BLOCKS (broken-grid spec sheets) ─── */
+.svc-spec{padding:7rem var(--pad);border-bottom:2px solid var(--ink);position:relative;z-index:2;display:grid;grid-template-columns:repeat(12,1fr);gap:var(--col-gap)}
+.svc-spec .marker{grid-column:1/2;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;border-right:2px solid var(--ink);padding-right:1rem}
+.svc-spec .marker .id{font-family:var(--fd);font-weight:700;font-size:clamp(4rem,9vw,9rem);line-height:.85;letter-spacing:-.06em;color:var(--ink)}
+.svc-spec .marker .lbl{writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--fm);font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+.svc-spec .copy{grid-column:2/8;padding-left:1.5rem;padding-right:1.5rem;display:flex;flex-direction:column;gap:1.75rem}
+.svc-spec .copy .ovr{font-family:var(--fm);font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);display:flex;justify-content:space-between;padding-bottom:1rem;border-bottom:1px solid var(--rule)}
+.svc-spec .copy .ovr b{color:var(--ink);font-weight:600}
+.svc-spec .copy .ovr .tag{color:var(--ink);background:var(--teal);padding:.3rem .55rem}
+.svc-spec .copy h2{font-family:var(--fd);font-weight:700;font-size:clamp(2.6rem,6vw,5.4rem);line-height:.88;letter-spacing:-.05em;text-transform:uppercase}
+.svc-spec .copy h2 em{font-style:normal;font-weight:400;color:var(--mid)}
+.svc-spec .copy h2 u{text-decoration:none;color:var(--teal)}
+.svc-spec .copy .body{font-family:var(--f);font-size:1rem;line-height:1.75;color:var(--mid);max-width:48ch}
+.svc-spec .copy .body b{color:var(--ink);font-weight:500}
+.svc-spec .copy .body u{text-decoration:none;background:rgba(0,229,194,.35);padding:0 .15em;color:var(--ink)}
+
+/* spec table inline */
+.svc-spec .specs{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.svc-spec .specs .s{padding:1rem 1rem 1rem 0;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:.2rem;font-family:var(--fm);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase}
+.svc-spec .specs .s:last-child{border-right:none;padding-right:0}
+.svc-spec .specs .s i{font-style:normal;color:var(--mid);font-weight:500}
+.svc-spec .specs .s b{color:var(--ink);font-weight:600;font-family:var(--fd);font-size:1rem;letter-spacing:-.01em;text-transform:none;line-height:1.1}
+
+.svc-spec .scope-chips{display:flex;flex-wrap:wrap;gap:.4rem}
+.svc-spec .scope-chips span{font-family:var(--fm);font-size:.66rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);border:1px solid var(--rule);padding:.45rem .75rem;line-height:1;background:var(--paper);transition:all .2s}
+.svc-spec .scope-chips span:hover{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+
+.svc-spec .img{grid-column:8/13;background:var(--ink-2);overflow:hidden;position:relative;aspect-ratio:auto;min-height:36rem}
+.svc-spec .img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform 1.4s var(--ease-out)}
+.svc-spec:hover .img img{transform:scale(1.04)}
+.svc-spec .img .cap{position:absolute;left:1rem;bottom:1rem;background:var(--teal);color:var(--ink);font-family:var(--fm);font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:.4rem .65rem;z-index:2}
+.svc-spec .img .tg{position:absolute;top:1rem;right:1rem;color:var(--paper);background:rgba(0,0,0,.6);font-family:var(--fm);font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:.4rem .65rem;z-index:2;backdrop-filter:blur(4px)}
+
+/* alternate: image left for even */
+.svc-spec.alt .marker{grid-column:12/13;border-right:none;border-left:2px solid var(--ink);align-items:flex-end;padding-right:0;padding-left:1rem;order:3}
+.svc-spec.alt .marker .lbl{writing-mode:vertical-rl;transform:none}
+.svc-spec.alt .copy{grid-column:6/12;order:2;padding-left:1.5rem;padding-right:1.5rem}
+.svc-spec.alt .img{grid-column:1/6;order:1}
+
+/* dark variant (3rd service) */
+.svc-spec.dark{background:var(--ink);color:var(--paper);border-bottom:2px solid var(--teal)}
+.svc-spec.dark .marker{border-right-color:var(--paper)}
+.svc-spec.dark .marker .id{color:var(--paper)}
+.svc-spec.dark .marker .lbl{color:var(--paper)}
+.svc-spec.dark .copy .ovr{color:rgba(255,255,255,.5);border-bottom-color:rgba(255,255,255,.18)}
+.svc-spec.dark .copy .ovr b{color:var(--paper)}
+.svc-spec.dark .copy h2{color:var(--paper)}
+.svc-spec.dark .copy h2 em{color:rgba(255,255,255,.4)}
+.svc-spec.dark .copy .body{color:rgba(255,255,255,.7)}
+.svc-spec.dark .copy .body b{color:var(--paper)}
+.svc-spec.dark .specs{border-color:rgba(255,255,255,.18)}
+.svc-spec.dark .specs .s{border-color:rgba(255,255,255,.18)}
+.svc-spec.dark .specs .s i{color:rgba(255,255,255,.45)}
+.svc-spec.dark .specs .s b{color:var(--paper)}
+.svc-spec.dark .scope-chips span{color:var(--paper);border-color:rgba(255,255,255,.22);background:transparent}
+.svc-spec.dark .scope-chips span:hover{background:var(--teal);color:var(--ink);border-color:var(--teal)}
+
+/* ─── PROCESS / TIMELINE BAR (mechanical) ─── */
+.proc-bar{padding:7rem var(--pad);background:var(--paper-2);border-bottom:2px solid var(--ink);position:relative;z-index:2}
+.proc-head{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--col-gap);padding-bottom:1.5rem;border-bottom:2px solid var(--ink);align-items:end}
+.proc-head .a{grid-column:1/3;font-family:var(--fm);font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mid)}
+.proc-head .a b{color:var(--ink);font-weight:600}
+.proc-head .b{grid-column:3/10;font-family:var(--fd);font-weight:700;font-size:clamp(2.5rem,7vw,6.5rem);line-height:.92;letter-spacing:-.05em;text-transform:uppercase}
+.proc-head .b em{font-style:normal;font-weight:400;color:var(--mid)}
+.proc-head .c{grid-column:10/13;font-family:var(--fm);font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);text-align:right;line-height:1.7}
+.proc-head .c b{color:var(--ink);font-weight:600}
+
+/* gantt-like bars */
+.gantt{margin-top:3.5rem;display:flex;flex-direction:column;gap:0;font-family:var(--fm);font-size:.72rem;letter-spacing:.04em;text-transform:uppercase}
+.gantt .week-row{display:grid;grid-template-columns:.55fr repeat(20,1fr) .35fr;gap:0;padding:.5rem 0 .65rem;border-bottom:2px solid var(--ink);font-family:var(--fm);font-size:.6rem;color:var(--mid);font-weight:500;letter-spacing:.08em}
+.gantt .week-row span{text-align:center;border-left:1px dashed var(--rule);padding:0 .15rem}
+.gantt .week-row span:first-child{text-align:left;border-left:none;color:var(--ink);font-weight:600}
+.gantt .week-row span:last-child{text-align:right;border-left:none}
+.gantt .row{display:grid;grid-template-columns:.55fr repeat(20,1fr) .35fr;gap:0;border-bottom:1px solid var(--rule);align-items:stretch;min-height:5.5rem;position:relative;cursor:default;transition:background .25s}
+.gantt .row:hover{background:var(--paper)}
+.gantt .row .label{grid-column:1/2;padding:.85rem 1rem .85rem 0;display:flex;flex-direction:column;gap:.2rem;justify-content:center;border-right:1px solid var(--rule)}
+.gantt .row .label .n{font-family:var(--fm);font-size:.6rem;font-weight:500;letter-spacing:.08em;color:var(--mid)}
+.gantt .row .label .n b{color:var(--ink);font-weight:600}
+.gantt .row .label h3{font-family:var(--fd);font-weight:700;font-size:1.2rem;letter-spacing:-.025em;text-transform:uppercase;line-height:1.05}
+.gantt .row .label h3 em{font-style:normal;font-weight:400;color:var(--mid)}
+.gantt .row .bar{align-self:center;height:2.2rem;background:var(--ink);position:relative;display:flex;align-items:center;padding:0 .7rem;color:var(--paper);font-family:var(--fm);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;font-weight:500;overflow:hidden}
+.gantt .row .bar .fill{position:absolute;top:0;left:0;height:100%;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform .8s var(--ease)}
+.gantt .row.in .bar .fill{transform:scaleX(1)}
+.gantt .row .bar span{position:relative;z-index:2;mix-blend-mode:difference}
+.gantt .row .right{grid-column:-2/-1;padding:.85rem 0 .85rem 1rem;font-family:var(--fm);font-size:.62rem;color:var(--mid);font-weight:500;letter-spacing:.08em;display:flex;align-items:center;border-left:1px solid var(--rule);justify-content:flex-end}
+.gantt .row .right b{color:var(--ink);font-weight:600}
+
+/* default bar positions per row */
+.gantt .row.p1 .bar{grid-column:2/3}
+.gantt .row.p2 .bar{grid-column:3/6}
+.gantt .row.p3 .bar{grid-column:6/9}
+.gantt .row.p4 .bar{grid-column:9/19}
+.gantt .row.p5 .bar{grid-column:19/22}
+
+.gantt .row .desc{grid-column:2/-2;padding:0 1rem .85rem;font-family:var(--f);font-size:.85rem;line-height:1.55;color:var(--mid);max-width:60ch;display:none}
+@media(min-width:1100px){.gantt .row .desc{display:block;align-self:end;grid-column:2/-2;padding:0 0 .65rem 1rem;border-top:none}}
+.gantt .row.p5 .desc{grid-column:2/-2}
+
+/* ─── CTA BAND (shared style) ─── */
+.cta-band{padding:0;border-bottom:2px solid var(--ink);background:var(--paper);position:relative;z-index:2;overflow:hidden}
+.cta-band a{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--col-gap);padding:5rem var(--pad);align-items:center;text-decoration:none;color:var(--ink);position:relative;overflow:hidden;transition:color .4s var(--ease)}
+.cta-band a::before{content:'';position:absolute;inset:0;background:var(--teal);transform:translateY(100%);transition:transform .55s var(--ease);z-index:0}
+.cta-band a:hover::before{transform:translateY(0)}
+.cta-band a > *{position:relative;z-index:2}
+.cta-band .meta{grid-column:1/3;font-family:var(--fm);font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mid)}
+.cta-band .meta b{color:var(--ink);font-weight:600}
+.cta-band h2{grid-column:3/11;font-family:var(--fd);font-weight:700;font-size:clamp(2.5rem,8vw,7.5rem);line-height:.88;letter-spacing:-.05em;text-transform:uppercase}
+.cta-band h2 em{font-style:normal;font-weight:400;color:var(--mid)}
+.cta-band h2 u{text-decoration:none;color:var(--teal);transition:color .4s}
+.cta-band a:hover h2 u{color:var(--ink)}
+.cta-band .arr{grid-column:11/13;text-align:right;font-family:var(--fd);font-weight:500;font-size:3.2rem;line-height:1;letter-spacing:-.03em;transition:transform .4s var(--ease)}
+.cta-band a:hover .arr{transform:translate(8px,-8px)}
+
+@media(max-width:1100px){
+  .grid-overlay{display:none}
+  .svc-spec .copy{grid-column:2/8}
+  .svc-spec .img{grid-column:8/13;min-height:28rem}
+  .svc-spec.alt .copy{grid-column:6/12}
+  .svc-spec.alt .img{grid-column:1/6}
+  .gantt .row{min-height:auto}
+  .gantt .row.p1 .bar{grid-column:2/4}
+  .gantt .row.p2 .bar{grid-column:3/7}
+  .gantt .row.p3 .bar{grid-column:6/10}
+  .gantt .row.p4 .bar{grid-column:9/19}
+  .gantt .row.p5 .bar{grid-column:18/22}
+}
+@media(max-width:860px){
+  .v2hero{padding:6rem 1.25rem 0}
+  .v2hero-coord,.v2hero-stack,.v2hero-foot,.proc-head,.matrix-head{grid-template-columns:1fr;gap:1rem}
+  .v2hero-coord span,.v2hero-foot > *,.proc-head > *{grid-column:auto!important;text-align:left!important;align-items:flex-start!important}
+  .v2hero-stack .label{display:none}
+  .v2hero-stack .ttl,.proc-head .b{grid-column:auto}
+  .cap-matrix{padding:3rem 1.25rem}
+  .cap-matrix .ch{display:none}
+  .cap-matrix .cr{grid-template-columns:1fr;gap:.6rem;padding:1.5rem 0}
+  .cap-matrix .cr > *{grid-column:auto!important;text-align:left!important}
+  .cap-matrix .cr .r2{font-size:1.8rem}
+  .cap-matrix .cr .r5{display:none}
+  .svc-spec{padding:3.5rem 1.25rem;grid-template-columns:1fr;gap:1.5rem}
+  .svc-spec .marker{grid-column:auto!important;border-right:none!important;border-left:none!important;flex-direction:row;align-items:baseline;gap:1rem;padding:0!important;order:0!important}
+  .svc-spec .marker .lbl{writing-mode:horizontal-tb;transform:none}
+  .svc-spec .copy{grid-column:auto!important;padding:0!important;order:1!important}
+  .svc-spec .img{grid-column:auto!important;order:2!important;min-height:24rem}
+  .svc-spec .specs{grid-template-columns:1fr}
+  .svc-spec .specs .s{border-right:none;border-bottom:1px solid var(--rule);padding:.85rem 0!important}
+  .svc-spec .specs .s:last-child{border-bottom:none}
+  .proc-bar{padding:3rem 1.25rem}
+  .gantt .week-row{display:none}
+  .gantt .row{grid-template-columns:1fr;min-height:auto;padding:1.5rem 0}
+  .gantt .row .label,.gantt .row .bar,.gantt .row .right,.gantt .row .desc{grid-column:auto;border:none;padding:.4rem 0;display:block;align-self:start;height:auto}
+  .gantt .row .bar{height:1.6rem;width:60%}
+  .cta-band a{grid-template-columns:1fr;padding:3rem 1.25rem;gap:1.25rem}
+  .cta-band .meta,.cta-band h2,.cta-band .arr{grid-column:auto;text-align:left}
+}
+</style>
+</head>
+<body>
+
+<!-- GRID OVERLAY -->
+<div class="grid-overlay" aria-hidden="true">
+  <span></span><span></span><span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span><span></span><span></span>
+</div>
+
+<!-- NAV -->
+<nav class="main-nav in" id="nav">
+  <a href="index.html" class="logo-a" aria-label="Alpine MI"><img src="alpine-mi.svg" alt="Alpine MI"></a>
+  <div class="nav-r">
+    <a href="index.html"><span class="dot"></span>Home</a>
+    <a href="about.html"><span class="dot"></span>About</a>
+    <a href="services.html" class="active"><span class="dot"></span>Services</a>
+    <a href="sectors.html"><span class="dot"></span>Sectors</a>
+    <a href="projects.html"><span class="dot"></span>Projects</a>
+    <a href="contact.html"><span class="dot"></span>Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="v2hero">
+  <div class="v2hero-coord">
+    <span>Section <b>03</b><br>Services / Capability</span>
+    <span>Lines <b>S/01 — S/03</b><br>Three disciplines</span>
+    <span>Method <b>Programme · In-house</b><br>Single point of contact</span>
+    <span>Format <b>v2 · Matrix</b><br>Concept · Round 02</span>
+  </div>
+
+  <div class="v2hero-stack">
+    <div class="label">Capability<br>(2024)</div>
+    <h1 class="ttl">
+      What we<br>
+      <em>actually</em><span class="slash">/</span><span class="acc">do.</span>
+    </h1>
+  </div>
+
+  <div class="v2hero-foot">
+    <div class="a"><b>(01) Method</b><br>One company across the spectrum.</div>
+    <p class="b">From <u>high-footfall fit-out</u> to sensitive heritage refurb. Same team, same standard, every brief.</p>
+    <div class="c"><b>03</b> service lines<br><b>05</b> stage process<br><b>12</b> months aftercare</div>
+  </div>
+</section>
+
+<!-- CAPABILITY MATRIX SUMMARY -->
+<section class="cap-matrix">
+  <div class="ch">
+    <span class="h1"><b>(02)</b> Index</span>
+    <span class="h2">Service line</span>
+    <span class="h3">Programme</span>
+    <span class="h4">Value</span>
+    <span class="h5">Recent</span>
+  </div>
+  <a href="#commercial" style="text-decoration:none;color:inherit"><div class="cr">
+    <span class="r1"><b>S/01</b> · Commercial</span>
+    <span class="r2">Fit-<em>out</em></span>
+    <span class="r3">2–20 weeks</span>
+    <span class="r4">£50k → £4m</span>
+    <span class="r5">↗</span>
+  </div></a>
+  <a href="#residential" style="text-decoration:none;color:inherit"><div class="cr">
+    <span class="r1"><b>S/02</b> · Residential</span>
+    <span class="r2">Construc-<em>tion</em></span>
+    <span class="r3">3–18 months</span>
+    <span class="r4">£250k → £6m</span>
+    <span class="r5">↗</span>
+  </div></a>
+  <a href="#design-build" style="text-decoration:none;color:inherit"><div class="cr">
+    <span class="r1"><b>S/03</b> · Design &amp; Build</span>
+    <span class="r2">D<em>&amp;</em>B</span>
+    <span class="r3">6–18 months</span>
+    <span class="r4">£500k → £8m</span>
+    <span class="r5">↗</span>
+  </div></a>
+</section>
+
+<!-- SERVICE 01 — COMMERCIAL -->
+<section class="svc-spec" id="commercial">
+  <div class="marker">
+    <span class="id">01</span>
+    <span class="lbl">Commercial / S/01</span>
+  </div>
+  <div class="copy">
+    <div class="ovr">
+      <span><b>S/01</b> · Commercial fit-out</span>
+      <span class="tag">Live trading sites</span>
+    </div>
+    <h2>Commercial<br><em>fit-out.</em></h2>
+    <p class="body">Built around your operational schedule. Weekend programming, phased handovers, dust-free zoning — <b>operational continuity dictates everything.</b> Hospitality, leisure, retail and offices across London. Multi-site programmes <u>completed with zero days lost.</u></p>
+    <div class="scope-chips">
+      <span>Restaurants</span>
+      <span>Bars &amp; Clubs</span>
+      <span>Fitness Studios</span>
+      <span>Retail &amp; Showrooms</span>
+      <span>Offices</span>
+      <span>Hospitality</span>
+    </div>
+    <div class="specs">
+      <div class="s"><i>Programme</i><b>2–20 weeks</b></div>
+      <div class="s"><i>Value</i><b>£50k → £4m</b></div>
+      <div class="s"><i>Recent</i><b>KÖD · Solo Sixty</b></div>
+    </div>
+  </div>
+  <div class="img">
+    <span class="tg">N° 01 / 03</span>
+    <img src="DSC04324.jpg" alt="Restaurant fit-out — bar joinery">
+    <span class="cap">KÖD · Soho · 2024</span>
+  </div>
+</section>
+
+<!-- SERVICE 02 — RESIDENTIAL -->
+<section class="svc-spec alt" id="residential">
+  <div class="marker">
+    <span class="id">02</span>
+    <span class="lbl">Residential / S/02</span>
+  </div>
+  <div class="copy">
+    <div class="ovr">
+      <span><b>S/02</b> · Residential construction</span>
+      <span class="tag">Listed &amp; private</span>
+    </div>
+    <h2>Residential<br><em>construction.</em></h2>
+    <p class="body">Listed, Victorian, Georgian and modern. <b>Heritage consents, party walls and neighbour relations handled in-house.</b> Whole-house refurbishments, side returns, lofts and new builds. We work for <u>private clients, family offices and developers</u> — discreetly, and to brief.</p>
+    <div class="scope-chips">
+      <span>Whole-house refurb</span>
+      <span>Heritage &amp; Listed</span>
+      <span>Side returns</span>
+      <span>Loft conversions</span>
+      <span>New builds</span>
+      <span>Basement digs</span>
+    </div>
+    <div class="specs">
+      <div class="s"><i>Programme</i><b>3–18 months</b></div>
+      <div class="s"><i>Value</i><b>£250k → £6m</b></div>
+      <div class="s"><i>Recent</i><b>Malvern · Hackney</b></div>
+    </div>
+  </div>
+  <div class="img">
+    <span class="tg">N° 02 / 03</span>
+    <img src="hackney-02-bathroom.jpg" alt="Residential — bathroom">
+    <span class="cap">Malvern · Hackney · 2024</span>
+  </div>
+</section>
+
+<!-- SERVICE 03 — DESIGN & BUILD (dark) -->
+<section class="svc-spec dark" id="design-build">
+  <div class="marker">
+    <span class="id">03</span>
+    <span class="lbl">Design &amp; Build / S/03</span>
+  </div>
+  <div class="copy">
+    <div class="ovr">
+      <span><b>S/03</b> · Design &amp; Build</span>
+      <span class="tag">Single accountability</span>
+    </div>
+    <h2>Design <u>&amp;</u><br><em>build.</em></h2>
+    <p class="body">RIBA Stage 2 onwards. We work alongside your architects — or lead the entire process ourselves. <b>One team, one P&amp;L, one point of accountability</b> from concept through to handover. The simplest contract structure available, and the most certain programme.</p>
+    <div class="scope-chips">
+      <span>Concept → Handover</span>
+      <span>Architect-led</span>
+      <span>Contractor-led</span>
+      <span>RIBA Stages 2–7</span>
+      <span>Value engineering</span>
+      <span>Programme assurance</span>
+    </div>
+    <div class="specs">
+      <div class="s"><i>Programme</i><b>6–18 months</b></div>
+      <div class="s"><i>Value</i><b>£500k → £8m</b></div>
+      <div class="s"><i>Best for</i><b>Operators · Private</b></div>
+    </div>
+  </div>
+  <div class="img">
+    <span class="tg">N° 03 / 03</span>
+    <img src="DSC04339.jpg" alt="Design and build — interior detail">
+    <span class="cap">Studio · 2024</span>
+  </div>
+</section>
+
+<!-- PROCESS / GANTT -->
+<section class="proc-bar">
+  <div class="proc-head">
+    <div class="a"><b>(04)</b><br>Method</div>
+    <h2 class="b">Brief <em>→</em> Aftercare</h2>
+    <div class="c"><b>05</b> stages<br>+ 12-month aftercare</div>
+  </div>
+
+  <div class="gantt">
+    <div class="week-row">
+      <span>W</span>
+      <span>01</span><span>02</span><span>03</span><span>04</span><span>05</span>
+      <span>06</span><span>07</span><span>08</span><span>09</span><span>10</span>
+      <span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
+      <span>16</span><span>17</span><span>18</span><span>19</span><span>20</span>
+      <span>+12m</span>
+    </div>
+
+    <div class="row p1">
+      <div class="label">
+        <span class="n"><b>P/01</b> Brief</span>
+        <h3>Brief <em>&amp;</em> Visit</h3>
+      </div>
+      <div class="bar"><span class="fill"></span><span>Wk 01 · 5 days</span></div>
+      <div class="right"><b>Day 1–5</b></div>
+      <p class="desc">Site walk-through, programme constraints, neighbour considerations and operational requirements captured in one visit.</p>
+    </div>
+
+    <div class="row p2">
+      <div class="label">
+        <span class="n"><b>P/02</b> Costing</span>
+        <h3>Programme <em>&amp;</em> Price</h3>
+      </div>
+      <div class="bar"><span class="fill"></span><span>Wk 02–03 · 10 days</span></div>
+      <div class="right"><b>Open-book</b></div>
+      <p class="desc">Open-book costing against a fixed programme. Trades sequenced before commitment — no surprises mid-build.</p>
+    </div>
+
+    <div class="row p3">
+      <div class="label">
+        <span class="n"><b>P/03</b> Pre-con</span>
+        <h3>Consents <em>&amp;</em> Mobilise</h3>
+      </div>
+      <div class="bar"><span class="fill"></span><span>Wk 04–06 · 2–4 wks</span></div>
+      <div class="right"><b>In-house</b></div>
+      <p class="desc">Building control, party-walls, licensing and access logistics handled in-house. Site set up to operate around your business.</p>
+    </div>
+
+    <div class="row p4">
+      <div class="label">
+        <span class="n"><b>P/04</b> Build</span>
+        <h3>On <em>site</em></h3>
+      </div>
+      <div class="bar"><span class="fill"></span><span>Variable · Per scope · In-house trades</span></div>
+      <div class="right"><b>Wkly progress</b></div>
+      <p class="desc">Weekly progress, single point of contact, in-house joinery and finishes crews. Quality controlled at every trade interface.</p>
+    </div>
+
+    <div class="row p5">
+      <div class="label">
+        <span class="n"><b>P/05</b> Handover</span>
+        <h3>Snag <em>&amp;</em> Aftercare</h3>
+      </div>
+      <div class="bar"><span class="fill"></span><span>+ 12 months</span></div>
+      <div class="right"><b>Accountable</b></div>
+      <p class="desc">Final walk-through, defects logged and closed. 12-month aftercare period built in — we stay accountable past handover.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <a href="contact.html">
+    <div class="meta"><b>(05)</b><br>Start a conversation</div>
+    <h2>Brief <u>in mind?</u><br><em>Let's scope it.</em></h2>
+    <span class="arr">↗</span>
+  </a>
+</div>
+
+<!-- COLOPHON -->
+<section class="colo">
+  <h2>Let's <u>build</u><br><em>something.</em></h2>
+  <div class="colo-grid">
+    <div class="colo-col">
+      <h4>Enquiries</h4>
+      <a href="mailto:sales@alpinemi.co.uk">sales@alpinemi.co.uk</a>
+      <a href="tel:02036171144">0203 617 1144</a>
+    </div>
+    <div class="colo-col">
+      <h4>Registered office</h4>
+      <span>180 Bexley Road</span>
+      <span>Eltham, London</span>
+      <span>England, SE9 2PH</span>
+    </div>
+    <div class="colo-col">
+      <h4>Navigation</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="sectors.html">Sectors</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="colo-col">
+      <h4>Coverage</h4>
+      <span>London</span>
+      <span>South East</span>
+    </div>
+  </div>
+  <div class="acred">
+    <div class="acred-lbl">Accreditations &amp; Memberships</div>
+    <div class="acred-row">
+      <div class="acred-item"><span class="placeholder">CHAS</span></div>
+      <div class="acred-item"><span class="placeholder">Constructionline</span></div>
+      <div class="acred-item"><span class="placeholder">SafeContractor</span></div>
+      <div class="acred-item"><span class="placeholder">ISO 9001</span></div>
+      <div class="acred-item"><span class="placeholder">FMB</span></div>
+      <div class="acred-item"><span class="placeholder">CSCS</span></div>
+    </div>
+  </div>
+  <div class="colo-foot">
+    <span>© 2025 Alpine MI · Co. No. 13895571 · England &amp; Wales · v2 Concept</span>
+    <span><a href="services.html">← v1</a> &nbsp;·&nbsp; <a href="projects-v2.html">Projects v2 →</a></span>
+  </div>
+</section>
+
+<script>
+/* reveal gantt bars on scroll */
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});},{threshold:.2});
+document.querySelectorAll('.gantt .row').forEach((r,i)=>{r.style.transitionDelay=(i*100)+'ms';obs.observe(r);});
+</script>
+</body>
+</html>

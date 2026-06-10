@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Alpine MI</title>
+<meta name="description" content="Alpine MI services — commercial fit-out, residential construction, design &amp; build across London.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ── SERVICES PAGE ── */
+.svc-block{display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:2px solid var(--ink);position:relative;align-items:stretch}
+.svc-block:nth-child(even){grid-template-areas:"img copy"}
+.svc-block:nth-child(odd){grid-template-areas:"copy img"}
+.svc-img{grid-area:img;position:relative;background:var(--ink-2);overflow:hidden;min-height:38rem}
+.svc-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform 1.4s var(--ease-out)}
+.svc-img:hover img{transform:scale(1.04)}
+.svc-img-cap{position:absolute;bottom:1.25rem;left:1.25rem;background:var(--teal);color:var(--ink);font-family:var(--fm);font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:.4rem .65rem;z-index:2}
+.svc-img-tag{position:absolute;top:1.25rem;right:1.25rem;font-family:var(--fm);font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);background:rgba(0,0,0,.6);padding:.4rem .65rem;backdrop-filter:blur(4px);z-index:2}
+
+.svc-copy{grid-area:copy;padding:6rem var(--pad);display:flex;flex-direction:column;gap:2rem;justify-content:center;border-right:1px solid var(--rule);position:relative}
+.svc-block:nth-child(even) .svc-copy{border-right:none;border-left:1px solid var(--rule)}
+.svc-copy .head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding-bottom:1rem;border-bottom:1px solid var(--rule)}
+.svc-copy .head .no{font-family:var(--fm);font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mid)}
+.svc-copy .head .no b{color:var(--ink);font-weight:600}
+.svc-copy .head .tag{font-family:var(--fm);font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);background:var(--teal);padding:.4rem .65rem}
+.svc-copy h2{font-family:var(--fd);font-weight:700;font-size:clamp(2.4rem,5.5vw,5.4rem);line-height:.95;letter-spacing:-.045em;text-transform:uppercase}
+.svc-copy h2 em{font-style:normal;font-weight:400;color:var(--mid)}
+.svc-copy h2 u{text-decoration:none;color:var(--teal)}
+.svc-copy .body{font-family:var(--f);font-size:.98rem;line-height:1.8;color:var(--mid);max-width:42ch}
+.svc-copy .body b{color:var(--ink);font-weight:500}
+.svc-copy .scope{display:grid;grid-template-columns:1fr 1fr;gap:.85rem 1.5rem;padding-top:1.25rem;border-top:1px solid var(--rule);font-family:var(--fm);font-size:.7rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+.svc-copy .scope span{display:flex;align-items:center;gap:.55rem;line-height:1.4}
+.svc-copy .scope span::before{content:'';width:6px;height:6px;background:var(--teal);flex-shrink:0;border-radius:50%}
+.svc-copy .meta{display:grid;grid-template-columns:auto 1fr;gap:.4rem 1.5rem;font-family:var(--fm);font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mid)}
+.svc-copy .meta b{color:var(--ink);font-weight:600}
+
+/* ── PROCESS ── */
+.proc{padding:8rem var(--pad) 6rem;border-bottom:1px solid var(--rule);background:var(--paper)}
+.proc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:4rem}
+.pstep{padding:2rem 1.5rem 3rem;border-left:1px solid var(--rule);display:flex;flex-direction:column;gap:1.5rem;position:relative;min-height:22rem}
+.pstep:first-child{border-left:none;padding-left:0}
+.pstep::before{content:'';position:absolute;left:-1px;top:0;width:0;height:2px;background:var(--teal);transition:width .8s var(--ease)}
+.pstep:first-child::before{left:0}
+.pstep.in::before{width:calc(100% + 1px)}
+.pstep-no{font-family:var(--fm);font-size:.66rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:.6rem}
+.pstep-no b{color:var(--ink);font-weight:600;font-size:.78rem}
+.pstep-no .tk{width:.5rem;height:.5rem;background:var(--teal);border-radius:50%;opacity:0;transform:scale(0);transition:opacity .4s,transform .4s var(--ease)}
+.pstep.in .pstep-no .tk{opacity:1;transform:scale(1);transition-delay:.5s}
+.pstep h3{font-family:var(--fd);font-weight:700;font-size:1.55rem;letter-spacing:-.025em;line-height:1.05;text-transform:uppercase}
+.pstep h3 em{font-style:normal;font-weight:400;color:var(--mid)}
+.pstep p{font-family:var(--f);font-size:.85rem;line-height:1.65;color:var(--mid)}
+.pstep .week{margin-top:auto;padding-top:1.25rem;border-top:1px solid var(--rule);font-family:var(--fm);font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);display:flex;justify-content:space-between;align-items:baseline}
+.pstep .week b{color:var(--ink);font-weight:600}
+.pstep .week em{font-style:normal;color:var(--mid);font-weight:400}
+
+/* ── CTA ── */
+.ctas{padding:7rem var(--pad);background:var(--ink);color:var(--paper);display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end}
+.ctas h2{font-family:var(--fd);font-weight:700;font-size:clamp(2.5rem,7vw,7rem);line-height:.9;letter-spacing:-.05em;text-transform:uppercase}
+.ctas h2 em{font-style:normal;font-weight:400;color:rgba(255,255,255,.4)}
+.ctas h2 u{text-decoration:none;color:var(--teal)}
+.ctas a.cta-link{display:inline-flex;align-items:center;gap:1rem;font-family:var(--fm);font-size:.78rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);text-decoration:none;padding:1.1rem 1.6rem;border:1.5px solid var(--paper);transition:background .25s,color .25s,border-color .25s,transform .25s}
+.ctas a.cta-link:hover{background:var(--teal);border-color:var(--teal);color:var(--ink);transform:translateY(-2px)}
+.ctas a.cta-link::after{content:'↗';font-family:var(--fd);font-size:1.1rem}
+
+@media(max-width:860px){
+  .svc-block{grid-template-columns:1fr!important;grid-template-areas:"img" "copy"!important}
+  .svc-block:nth-child(even){grid-template-areas:"img" "copy"!important}
+  .svc-img{min-height:24rem}
+  .svc-copy{padding:3rem 1.25rem;border-right:none!important;border-left:none!important}
+  .svc-copy .scope{grid-template-columns:1fr}
+  .proc{padding:4rem 1.25rem 3rem}
+  .proc-grid{grid-template-columns:1fr}
+  .pstep{border-left:none;border-top:1px solid var(--rule);padding:2rem 0;min-height:auto}
+  .pstep:first-child{border-top:none}
+  .pstep::before{display:none}
+  .ctas{grid-template-columns:1fr;padding:4rem 1.25rem}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="loader-top"><span class="loader-count" id="lcount">00</span><em>—</em></div>
+  <div class="loader-bot">
+    <span><strong>Alpine MI</strong> · Services</span>
+    <span>London &amp; SE · Est. 2022</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="main-nav" id="nav">
+  <a href="index.html" class="logo-a" aria-label="Alpine MI"><img src="alpine-mi.svg" alt="Alpine MI"></a>
+  <div class="nav-r">
+    <a href="index.html"><span class="dot"></span>Home</a>
+    <a href="about.html"><span class="dot"></span>About</a>
+    <a href="services.html" class="active"><span class="dot"></span>Services</a>
+    <a href="sectors.html"><span class="dot"></span>Sectors</a>
+    <a href="projects.html"><span class="dot"></span>Projects</a>
+    <a href="contact.html"><span class="dot"></span>Contact</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="phero">
+  <div class="phero-top">
+    <span class="crumb">Index · Services</span>
+    <span><em>(03)</em></span>
+  </div>
+  <h1 class="phero-h1">
+    <span class="row"><span class="ws" data-d="0">what&nbsp;</span><span class="ws" data-d="80">we</span></span>
+    <span class="row"><span class="ws accent" data-d="180">do.</span></span>
+  </h1>
+  <div class="phero-foot">
+    <div class="phero-foot-l">Capability<br><b>Three lines</b></div>
+    <p class="phero-foot-c">One company across the full spectrum — from <b>high-footfall commercial fit-out</b> to sensitive heritage refurbishment. Same team, same standard, every brief.</p>
+    <div class="phero-foot-r"><b>Method</b><br>Programme · In-house</div>
+  </div>
+</section>
+
+<!-- SERVICE BLOCK 01 — COMMERCIAL FIT-OUT -->
+<section class="svc-block" id="commercial">
+  <div class="svc-copy">
+    <div class="head">
+      <span class="no"><b>(S/01)</b> — Commercial</span>
+      <span class="tag">Live trading sites</span>
+    </div>
+    <h2>Commercial<br><em>fit-out</em></h2>
+    <p class="body">Built around your operational schedule. Weekend programming, phased handovers, dust-free zoning — operational continuity dictates everything. <b>Hospitality, leisure, retail and offices</b> across London. We've completed multi-site programmes for returning operators with zero days lost.</p>
+    <div class="scope">
+      <span>Restaurants</span>
+      <span>Bars &amp; Clubs</span>
+      <span>Fitness Studios</span>
+      <span>Retail &amp; Showrooms</span>
+      <span>Offices</span>
+      <span>Hospitality</span>
+    </div>
+    <div class="meta">
+      <b>Programme</b><span>2–20 weeks · Phased</span>
+      <b>Value</b><span>£50k → £4m</span>
+      <b>Recent</b><span>KÖD Soho · Solo Sixty EC3</span>
+    </div>
+  </div>
+  <div class="svc-img">
+    <span class="svc-img-tag">N° 01 / 03</span>
+    <img src="DSC04324.jpg" alt="Restaurant fit-out — bar joinery">
+    <span class="svc-img-cap">KÖD · Soho · 2024</span>
+  </div>
+</section>
+
+<!-- SERVICE BLOCK 02 — RESIDENTIAL -->
+<section class="svc-block" id="residential">
+  <div class="svc-img">
+    <span class="svc-img-tag">N° 02 / 03</span>
+    <img src="hackney-02-bathroom.jpg" alt="Residential build — bathroom">
+    <span class="svc-img-cap">Malvern · Hackney · 2024</span>
+  </div>
+  <div class="svc-copy">
+    <div class="head">
+      <span class="no"><b>(S/02)</b> — Residential</span>
+      <span class="tag">Listed &amp; private</span>
+    </div>
+    <h2>Residential<br><em>construction</em></h2>
+    <p class="body">Listed, Victorian, Georgian and modern. Heritage consents, party walls and neighbour relations handled in-house. <b>Whole-house refurbishments, side returns, lofts and new builds.</b> We work for private clients, family offices and developers — discreetly, and to brief.</p>
+    <div class="scope">
+      <span>Whole-house refurb</span>
+      <span>Heritage &amp; Listed</span>
+      <span>Side returns</span>
+      <span>Loft conversions</span>
+      <span>New builds</span>
+      <span>Basement digs</span>
+    </div>
+    <div class="meta">
+      <b>Programme</b><span>3–18 months</span>
+      <b>Value</b><span>£250k → £6m</span>
+      <b>Recent</b><span>Malvern · Hackney · 4 storey</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE BLOCK 03 — DESIGN & BUILD -->
+<section class="svc-block" id="design-build">
+  <div class="svc-copy">
+    <div class="head">
+      <span class="no"><b>(S/03)</b> — Design &amp; Build</span>
+      <span class="tag">Single accountability</span>
+    </div>
+    <h2>Design <u>&amp;</u><br><em>build</em></h2>
+    <p class="body">RIBA Stage 2 onwards. We work alongside your architects — or lead the entire process ourselves. <b>One team, one P&amp;L, one point of accountability</b> from concept through to handover. The simplest contract structure available, and the most certain programme.</p>
+    <div class="scope">
+      <span>Concept → Handover</span>
+      <span>Architect-led</span>
+      <span>Contractor-led</span>
+      <span>RIBA Stages 2–7</span>
+      <span>Value engineering</span>
+      <span>Programme assurance</span>
+    </div>
+    <div class="meta">
+      <b>Programme</b><span>6–18 months · Inclusive</span>
+      <b>Value</b><span>£500k → £8m</span>
+      <b>Best for</b><span>Returning operators &amp; private clients</span>
+    </div>
+  </div>
+  <div class="svc-img">
+    <span class="svc-img-tag">N° 03 / 03</span>
+    <img src="DSC04339.jpg" alt="Design and build — interior detail">
+    <span class="svc-img-cap">Studio · 2024</span>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="proc">
+  <div class="shead" style="border-top:none;padding:0 0 1.25rem">
+    <span class="shead-no"><b>(04)</b> — Method</span>
+    <h2 class="shead-title">How we <em>work</em></h2>
+    <span class="shead-meta">Five stages<br><b>Brief → Aftercare</b></span>
+  </div>
+  <div class="proc-grid">
+    <article class="pstep">
+      <span class="pstep-no"><span class="tk"></span><b>P/01</b>&nbsp;Brief</span>
+      <h3>Brief <em>&amp;</em> Visit</h3>
+      <p>Site walk-through, programme constraints, neighbour considerations and operational requirements all captured in one visit.</p>
+      <span class="week"><b>Week 01</b><em>Day 1–5</em></span>
+    </article>
+    <article class="pstep">
+      <span class="pstep-no"><span class="tk"></span><b>P/02</b>&nbsp;Costing</span>
+      <h3>Programme <em>&amp;</em> Price</h3>
+      <p>Open-book costing against a fixed programme. Trades sequenced before commitment — no surprises mid-build.</p>
+      <span class="week"><b>Week 02–03</b><em>10 days</em></span>
+    </article>
+    <article class="pstep">
+      <span class="pstep-no"><span class="tk"></span><b>P/03</b>&nbsp;Pre-con</span>
+      <h3>Consents <em>&amp;</em> Mobilise</h3>
+      <p>Building control, party-walls, licensing and access logistics handled in-house. Site set up to operate around your business.</p>
+      <span class="week"><b>Week 04–06</b><em>2–4 weeks</em></span>
+    </article>
+    <article class="pstep">
+      <span class="pstep-no"><span class="tk"></span><b>P/04</b>&nbsp;Build</span>
+      <h3>On <em>site</em></h3>
+      <p>Weekly progress, single point of contact, in-house joinery and finishes crews. Quality controlled at every trade interface.</p>
+      <span class="week"><b>Variable</b><em>Per scope</em></span>
+    </article>
+    <article class="pstep">
+      <span class="pstep-no"><span class="tk"></span><b>P/05</b>&nbsp;Handover</span>
+      <h3>Snag <em>&amp;</em> Aftercare</h3>
+      <p>Final walk-through, defects logged and closed. 12-month aftercare period built in — we stay accountable past handover.</p>
+      <span class="week"><b>Week +12mo</b><em>Aftercare</em></span>
+    </article>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mwrap" aria-hidden="true">
+  <div class="mtrack">
+    <span class="mi"><em>Commercial fit-out</em> <span class="star">•</span></span>
+    <span class="mi"><em>Residential construction</em> <span class="star">•</span></span>
+    <span class="mi"><em>Design &amp; build</em> <span class="star">•</span></span>
+    <span class="mi"><em>Heritage refurb</em> <span class="star">•</span></span>
+    <span class="mi"><em>Joinery</em> <span class="star">•</span></span>
+    <span class="mi"><em>Commercial fit-out</em> <span class="star">•</span></span>
+    <span class="mi"><em>Residential construction</em> <span class="star">•</span></span>
+    <span class="mi"><em>Design &amp; build</em> <span class="star">•</span></span>
+    <span class="mi"><em>Heritage refurb</em> <span class="star">•</span></span>
+    <span class="mi"><em>Joinery</em> <span class="star">•</span></span>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="ctas">
+  <h2>Brief <u>in mind?</u><br><em>Let's scope it.</em></h2>
+  <a class="cta-link" href="contact.html">Start a conversation</a>
+</section>
+
+<!-- COLOPHON -->
+<section class="colo">
+  <h2>Let's <u>build</u><br><em>something.</em></h2>
+  <div class="colo-grid">
+    <div class="colo-col">
+      <h4>Enquiries</h4>
+      <a href="mailto:sales@alpinemi.co.uk">sales@alpinemi.co.uk</a>
+      <a href="tel:02036171144">0203 617 1144</a>
+    </div>
+    <div class="colo-col">
+      <h4>Registered office</h4>
+      <span>180 Bexley Road</span>
+      <span>Eltham, London</span>
+      <span>England, SE9 2PH</span>
+    </div>
+    <div class="colo-col">
+      <h4>Navigation</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="sectors.html">Sectors</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="colo-col">
+      <h4>Coverage</h4>
+      <span>London</span>
+      <span>South East</span>
+    </div>
+  </div>
+  <div class="acred">
+    <div class="acred-lbl">Accreditations &amp; Memberships</div>
+    <div class="acred-row">
+      <div class="acred-item"><span class="placeholder">CHAS</span></div>
+      <div class="acred-item"><span class="placeholder">Constructionline</span></div>
+      <div class="acred-item"><span class="placeholder">SafeContractor</span></div>
+      <div class="acred-item"><span class="placeholder">ISO 9001</span></div>
+      <div class="acred-item"><span class="placeholder">FMB</span></div>
+      <div class="acred-item"><span class="placeholder">CSCS</span></div>
+    </div>
+  </div>
+  <div class="colo-foot">
+    <span>© 2025 Alpine MI · Co. No. 13895571 · England &amp; Wales</span>
+    <span><a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Terms</a></span>
+  </div>
+</section>
+
+<script src="shared.js"></script>
+</body>
+</html>

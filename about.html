@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Alpine MI</title>
+<meta name="description" content="Alpine MI — Construction company working at the intersection of hospitality, leisure and residential. Programme-led, in-house, on time.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ── TWEAK RESPONSE LAYER ── */
+/* All major headlines re-route through tweak vars so the Display tweak truly reshapes voice */
+:root{
+  --display-weight:700;
+  --display-tracking:-0.05em;
+  --display-case:uppercase;
+  --display-italic:normal;
+}
+.phero-h1, .intro-l h2, .princ-hd h3, .principle h4,
+.timeline-row .yr, .timeline-row .ttl, .ctas h2, .colo h2,
+.shead-title, .stat-fig{
+  font-family:var(--fd);
+  font-weight:var(--display-weight);
+  letter-spacing:var(--display-tracking);
+  text-transform:var(--display-case);
+  font-style:var(--display-italic);
+}
+.phero-h1 em, .intro-l h2 em, .princ-hd h3 em, .principle h4 em,
+.timeline-row .yr em, .timeline-row .ttl em, .ctas h2 em, .colo h2 em,
+.shead-title em{font-style:var(--display-italic)}
+/* serif loves a little more breathing room on caps */
+body[data-display="serif"] .phero-h1,
+body[data-display="serif"] .intro-l h2,
+body[data-display="serif"] .ctas h2,
+body[data-display="serif"] .colo h2{letter-spacing:-0.025em;font-feature-settings:"ss01"}
+body[data-display="mono"] .phero-h1{font-size:clamp(3rem,11vw,13rem)}
+body[data-display="mono"] .ctas h2,
+body[data-display="mono"] .colo h2{font-size:clamp(2.5rem,9vw,10rem)}
+body[data-display="industrial"] .phero-h1{letter-spacing:-0.035em}
+
+/* ── PALETTE NUDGES ── */
+/* mid-tone derived per palette so dimmed text reads on coloured papers */
+body[data-palette="cream"]    .intro-r-cap,
+body[data-palette="cream"]    .acred-item:hover .placeholder{color:#F1EADC}
+body[data-palette="bone"]     .intro-r-cap{color:#fff}
+body[data-palette="concrete"] .intro-r-cap{color:#fff}
+/* highlight underline (the box-shadow:inset highlight) reuses accent automatically */
+
+/* ── SURFACE TREATMENTS ── */
+body{position:relative}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:1;
+  opacity:0;transition:opacity .6s var(--ease)
+}
+body[data-surface="grain"]::before{
+  opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode:multiply
+}
+body[data-surface="grid"]::before{
+  opacity:.4;
+  background-image:radial-gradient(circle, var(--ink) 1px, transparent 1.2px);
+  background-size:24px 24px;
+  mix-blend-mode:multiply
+}
+body[data-surface="grid"]::before{opacity:.18}
+body[data-surface="hatch"]::before{
+  opacity:.18;
+  background-image:repeating-linear-gradient(45deg,var(--ink) 0,var(--ink) 1px,transparent 1px,transparent 7px);
+  mix-blend-mode:multiply
+}
+/* let sections stay above the overlay */
+nav.main-nav, .loader, .phero, .intro, .princ, .tl, .mwrap, .ctas, .colo, .twk-panel{position:relative;z-index:2}
+/* but keep nav lift higher */
+nav.main-nav{z-index:200}
+.loader{z-index:1000}
+
+/* ── PAGE: ABOUT ── */
+.intro{display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--rule)}
+.intro-l{padding:8rem var(--pad);border-right:1px solid var(--rule);display:flex;flex-direction:column;justify-content:center;gap:2.25rem}
+.intro-l h2{font-family:var(--fd);font-weight:700;font-size:clamp(2rem,4vw,3.6rem);line-height:1.05;letter-spacing:-.04em;max-width:18ch;text-transform:uppercase}
+.intro-l h2 em{font-style:normal;font-weight:400;color:var(--mid)}
+.intro-l h2 u{text-decoration:none;background:var(--teal);padding:0 .12em;color:var(--ink)}
+.intro-l p{font-family:var(--f);font-size:.98rem;line-height:1.8;color:var(--mid);max-width:42ch}
+.intro-l p b{color:var(--ink);font-weight:500}
+.intro-r{position:relative;background:var(--ink-2);overflow:hidden;min-height:36rem}
+.intro-r img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;filter:grayscale(.15)}
+.intro-r-cap{position:absolute;left:1.25rem;bottom:1.25rem;background:var(--teal);color:var(--ink);font-family:var(--fm);font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:.4rem .65rem}
+
+/* ── PRINCIPLES ── */
+.princ{padding:7rem var(--pad) 5rem;display:grid;grid-template-columns:1fr 2fr;gap:4rem;border-bottom:1px solid var(--rule)}
+.princ-hd .num{font-family:var(--fm);font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);margin-bottom:1rem}
+.princ-hd .num b{color:var(--ink);font-weight:600}
+.princ-hd h3{font-family:var(--fd);font-weight:700;font-size:clamp(2.2rem,4.5vw,4rem);line-height:.92;letter-spacing:-.04em;text-transform:uppercase}
+.princ-hd h3 em{font-style:normal;color:var(--teal)}
+.princ-list{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.principle{padding:2.25rem 1.75rem 2rem;border-bottom:1px solid var(--rule);border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:1rem;min-height:18rem;position:relative;background:var(--paper);transition:background .35s var(--ease)}
+.principle:hover{background:var(--paper-2)}
+.principle-no{font-family:var(--fm);font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--mid)}
+.principle-no b{color:var(--ink);font-weight:600}
+.principle h4{font-family:var(--fd);font-weight:700;font-size:1.55rem;letter-spacing:-.03em;line-height:1.05;text-transform:uppercase}
+.principle h4 em{font-style:normal;font-weight:400;color:var(--mid)}
+.principle p{font-family:var(--f);font-size:.85rem;line-height:1.7;color:var(--mid)}
+.principle::after{content:'';position:absolute;left:0;top:0;width:18px;height:4px;background:var(--teal)}
+
+/* ── TIMELINE ── */
+.tl{padding:7rem var(--pad) 6rem;border-bottom:1px solid var(--rule);background:var(--paper-2)}
+.tl-grid{margin-top:4rem;border-top:2px solid var(--ink)}
+.timeline-row{display:grid;grid-template-columns:120px 1.2fr 2fr;gap:2.5rem;align-items:start;padding:2.25rem 0;border-bottom:1px solid var(--rule);position:relative}
+.timeline-row .yr{font-family:var(--fd);font-weight:700;font-size:clamp(2rem,3.4vw,3.2rem);letter-spacing:-.03em;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.timeline-row .yr em{font-style:normal;color:var(--teal)}
+.timeline-row .ttl{font-family:var(--fd);font-weight:700;font-size:1.35rem;letter-spacing:-.02em;text-transform:uppercase;line-height:1.1}
+.timeline-row .ttl em{font-style:normal;font-weight:400;color:var(--mid);display:block;margin-top:.4rem;font-family:var(--fm);font-size:.66rem;letter-spacing:.08em}
+.timeline-row .body{font-family:var(--f);font-size:.92rem;line-height:1.75;color:var(--mid);max-width:52ch}
+.timeline-row .body b{color:var(--ink);font-weight:500}
+
+/* ── STATS ── */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.stat{padding:3.5rem 1.75rem;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:1rem;position:relative;overflow:hidden;background:var(--paper);transition:background .4s var(--ease)}
+.stat:last-child{border-right:none}
+.stat:hover{background:var(--paper-2)}
+.stat-no{font-family:var(--fm);font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--mid)}
+.stat-no b{color:var(--ink);font-weight:600}
+.stat-fig{font-family:var(--fd);font-weight:700;font-size:clamp(3.5rem,6vw,6rem);line-height:.9;letter-spacing:-.05em;color:var(--ink);display:flex;align-items:baseline;gap:.15em;font-variant-numeric:tabular-nums}
+.stat-fig sup{font-size:.42em;font-weight:500;color:var(--teal);align-self:flex-start;margin-top:.4em;letter-spacing:0}
+.stat-lbl{font-family:var(--f);font-size:.85rem;line-height:1.55;color:var(--mid);max-width:22ch;margin-top:auto;padding-top:1.5rem;border-top:1px solid var(--rule)}
+.stat-lbl b{color:var(--ink);font-weight:500}
+
+/* ── CTA strip ── */
+.ctas{padding:7rem var(--pad);background:var(--ink);color:var(--paper);display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end}
+.ctas h2{font-family:var(--fd);font-weight:700;font-size:clamp(2.5rem,7vw,7rem);line-height:.9;letter-spacing:-.05em;text-transform:uppercase}
+.ctas h2 em{font-style:normal;font-weight:400;color:rgba(255,255,255,.4)}
+.ctas h2 u{text-decoration:none;color:var(--teal)}
+.ctas a.cta-link{display:inline-flex;align-items:center;gap:1rem;font-family:var(--fm);font-size:.78rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);text-decoration:none;padding:1.1rem 1.6rem;border:1.5px solid var(--paper);transition:background .25s,color .25s,border-color .25s,transform .25s}
+.ctas a.cta-link:hover{background:var(--teal);border-color:var(--teal);color:var(--ink);transform:translateY(-2px)}
+.ctas a.cta-link::after{content:'↗';font-family:var(--fd);font-size:1.1rem}
+
+@media(max-width:860px){
+  .intro{grid-template-columns:1fr}
+  .intro-l{padding:4rem 1.25rem;border-right:none;border-bottom:1px solid var(--rule)}
+  .intro-r{min-height:24rem}
+  .princ{grid-template-columns:1fr;gap:2.5rem;padding:4rem 1.25rem 3rem}
+  .princ-list{grid-template-columns:1fr;border-left:none}
+  .principle{min-height:auto;border-right:none}
+  .tl{padding:4rem 1.25rem 3rem}
+  .timeline-row{grid-template-columns:1fr;gap:.75rem}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat:nth-child(2n){border-right:none}
+  .stat:nth-child(n+3){border-top:1px solid var(--rule)}
+  .ctas{grid-template-columns:1fr;padding:4rem 1.25rem}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="loader-top"><span class="loader-count" id="lcount">00</span><em>—</em></div>
+  <div class="loader-bot">
+    <span><strong>Alpine MI</strong> · About</span>
+    <span>London &amp; SE · Est. 2022</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="main-nav" id="nav">
+  <a href="index.html" class="logo-a" aria-label="Alpine MI"><img src="alpine-mi.svg" alt="Alpine MI"></a>
+  <div class="nav-r">
+    <a href="index.html"><span class="dot"></span>Home</a>
+    <a href="about.html" class="active"><span class="dot"></span>About</a>
+    <a href="services.html"><span class="dot"></span>Services</a>
+    <a href="sectors.html"><span class="dot"></span>Sectors</a>
+    <a href="projects.html"><span class="dot"></span>Projects</a>
+    <a href="contact.html"><span class="dot"></span>Contact</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="phero">
+  <div class="phero-top">
+    <span class="crumb">Index · About</span>
+    <span><em>(02)</em></span>
+  </div>
+  <h1 class="phero-h1">
+    <span class="row"><span class="ws" data-d="0">in&nbsp;</span><span class="ws" data-d="80"><em>house.</em></span></span>
+    <span class="row"><span class="ws" data-d="160">on&nbsp;</span><span class="ws accent" data-d="240">time.</span></span>
+  </h1>
+  <div class="phero-foot">
+    <div class="phero-foot-l">London &amp; SE<br><b>Est. 2022</b></div>
+    <p class="phero-foot-c">Alpine MI is a London construction company building at the intersection of <b>hospitality, leisure and residential</b>. Programme-led, in-house, end-to-end.</p>
+    <div class="phero-foot-r"><b>Sectors</b><br>Commercial · Residential</div>
+  </div>
+</section>
+
+<!-- INTRO TWO-UP -->
+<section class="intro">
+  <div class="intro-l">
+    <h2>Three years on a <u>single client.</u> <em>That's the standard, not the exception.</em></h2>
+    <p>Alpine MI was founded in 2022 to bring a single, rigorous standard to London's construction market. We work for restaurant operators, leisure groups and private clients on schemes that demand <b>programme certainty</b> — and on heritage homes that demand <b>delicacy</b>.</p>
+    <p>Every project is managed end-to-end by our directors. <b>No subcontracted accountability, no programme drift, no awkward handovers.</b> One company, one P&amp;L, one point of contact from brief to twelve-month aftercare.</p>
+  </div>
+  <div class="intro-r">
+    <img src="DSC04354.jpg" alt="Alpine MI — bar fit-out detail">
+    <span class="intro-r-cap">Studio · KÖD Soho · 2024</span>
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<section class="princ">
+  <div class="princ-hd">
+    <div class="num"><b>(01)</b> — Principles</div>
+    <h3>How we <em>think</em></h3>
+  </div>
+  <div class="princ-list">
+    <article class="principle">
+      <span class="principle-no"><b>PR/01</b>&nbsp;— Programme first</span>
+      <h4>Programme <em>first</em></h4>
+      <p>Cost and quality follow programme — not the other way around. Trades sequenced before commitment; surprises engineered out.</p>
+    </article>
+    <article class="principle">
+      <span class="principle-no"><b>PR/02</b>&nbsp;— In-house only</span>
+      <h4>In-house <em>only</em></h4>
+      <p>Joinery, finishes, M&amp;E coordination and site management all sit within Alpine MI. Accountability never leaves the building.</p>
+    </article>
+    <article class="principle">
+      <span class="principle-no"><b>PR/03</b>&nbsp;— Plain speech</span>
+      <h4>Plain <em>speech</em></h4>
+      <p>Weekly written reports. Open-book pricing. Clear escalation paths. If a client has to chase information, we've failed at our job.</p>
+    </article>
+    <article class="principle">
+      <span class="principle-no"><b>PR/04</b>&nbsp;— Past handover</span>
+      <h4>Past <em>handover</em></h4>
+      <p>Twelve months aftercare is built in. The job isn't finished when the snag list closes — it's finished when the space has settled.</p>
+    </article>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="tl">
+  <div class="shead" style="background:var(--paper-2);border-top:none">
+    <span class="shead-no"><b>(02)</b> — Trajectory</span>
+    <h2 class="shead-title">Three <em>years</em></h2>
+    <span class="shead-meta">2022 — 2025<br><b>Selected milestones</b></span>
+  </div>
+  <div class="tl-grid">
+    <div class="timeline-row">
+      <span class="yr"><em>20</em>22</span>
+      <h3 class="ttl">Founded<em>Q3 · London</em></h3>
+      <p class="body">Alpine MI formed by a small team of directors with a combined 20+ years across hospitality fit-out and residential construction. First office at <b>180 Bexley Rd</b>.</p>
+    </div>
+    <div class="timeline-row">
+      <span class="yr"><em>20</em>23</span>
+      <h3 class="ttl">First leisure cluster<em>Solo Sixty · EC3 + E1</em></h3>
+      <p class="body">Two consecutive Solo Sixty studios completed inside trading buildings. <b>Weekend programming</b>, dust-free zoning and full-fit handover — both delivered on time.</p>
+    </div>
+    <div class="timeline-row">
+      <span class="yr"><em>20</em>24</span>
+      <h3 class="ttl">Hospitality scale<em>KÖD Soho · W1</em></h3>
+      <p class="body">First listed-building restaurant fit-out for a returning operator. Bespoke joinery, marble bar, AV integration — full programme delivered alongside a live <b>residential build</b> in Hackney.</p>
+    </div>
+    <div class="timeline-row">
+      <span class="yr"><em>20</em>25</span>
+      <h3 class="ttl">In-house joinery<em>Investment · Q2</em></h3>
+      <p class="body">Workshop expanded to support bespoke joinery in-house — feature stairs, bar fronts, panelled walls. <b>Lead times</b> compressed by 30%.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mwrap" aria-hidden="true">
+  <div class="mtrack">
+    <span class="mi"><em>Hospitality</em> <span class="star">•</span></span>
+    <span class="mi"><em>Leisure</em> <span class="star">•</span></span>
+    <span class="mi"><em>Residential</em> <span class="star">•</span></span>
+    <span class="mi"><em>Listed</em> <span class="star">•</span></span>
+    <span class="mi"><em>Heritage</em> <span class="star">•</span></span>
+    <span class="mi"><em>Hospitality</em> <span class="star">•</span></span>
+    <span class="mi"><em>Leisure</em> <span class="star">•</span></span>
+    <span class="mi"><em>Residential</em> <span class="star">•</span></span>
+    <span class="mi"><em>Listed</em> <span class="star">•</span></span>
+    <span class="mi"><em>Heritage</em> <span class="star">•</span></span>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="ctas">
+  <h2>Have a <u>brief?</u><br><em>Let's talk.</em></h2>
+  <a class="cta-link" href="contact.html">Start a conversation</a>
+</section>
+
+<!-- COLOPHON -->
+<section class="colo" id="contact">
+  <h2>Let's <u>build</u><br><em>something.</em></h2>
+  <div class="colo-grid">
+    <div class="colo-col">
+      <h4>Enquiries</h4>
+      <a href="mailto:sales@alpinemi.co.uk">sales@alpinemi.co.uk</a>
+      <a href="tel:02036171144">0203 617 1144</a>
+    </div>
+    <div class="colo-col">
+      <h4>Registered office</h4>
+      <span>180 Bexley Road</span>
+      <span>Eltham, London</span>
+      <span>England, SE9 2PH</span>
+    </div>
+    <div class="colo-col">
+      <h4>Navigation</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="sectors.html">Sectors</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="colo-col">
+      <h4>Coverage</h4>
+      <span>London</span>
+      <span>South East</span>
+    </div>
+  </div>
+  <div class="acred">
+    <div class="acred-lbl">Accreditations &amp; Memberships</div>
+    <div class="acred-row">
+      <div class="acred-item"><span class="placeholder">CHAS</span></div>
+      <div class="acred-item"><span class="placeholder">Constructionline</span></div>
+      <div class="acred-item"><span class="placeholder">SafeContractor</span></div>
+      <div class="acred-item"><span class="placeholder">ISO 9001</span></div>
+      <div class="acred-item"><span class="placeholder">FMB</span></div>
+      <div class="acred-item"><span class="placeholder">CSCS</span></div>
+    </div>
+  </div>
+  <div class="colo-foot">
+    <span>© 2025 Alpine MI · Co. No. 13895571 · England &amp; Wales</span>
+    <span><a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Terms</a></span>
+  </div>
+</section>
+
+<script src="shared.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="about-tweaks.jsx"></script>
+</body>
+</html>
