@@ -11,7 +11,6 @@
 <link rel="stylesheet" href="shared.css">
 <style>
 /* ── TWEAK RESPONSE LAYER ── */
-/* All major headlines re-route through tweak vars so the Display tweak truly reshapes voice */
 :root{
   --display-weight:700;
   --display-tracking:-0.05em;
@@ -30,7 +29,6 @@
 .phero-h1 em, .intro-l h2 em, .princ-hd h3 em, .principle h4 em,
 .timeline-row .yr em, .timeline-row .ttl em, .ctas h2 em, .colo h2 em,
 .shead-title em{font-style:var(--display-italic)}
-/* serif loves a little more breathing room on caps */
 body[data-display="serif"] .phero-h1,
 body[data-display="serif"] .intro-l h2,
 body[data-display="serif"] .ctas h2,
@@ -41,12 +39,10 @@ body[data-display="mono"] .colo h2{font-size:clamp(2.5rem,9vw,10rem)}
 body[data-display="industrial"] .phero-h1{letter-spacing:-0.035em}
 
 /* ── PALETTE NUDGES ── */
-/* mid-tone derived per palette so dimmed text reads on coloured papers */
 body[data-palette="cream"]    .intro-r-cap,
 body[data-palette="cream"]    .acred-item:hover .placeholder{color:#F1EADC}
 body[data-palette="bone"]     .intro-r-cap{color:#fff}
 body[data-palette="concrete"] .intro-r-cap{color:#fff}
-/* highlight underline (the box-shadow:inset highlight) reuses accent automatically */
 
 /* ── SURFACE TREATMENTS ── */
 body{position:relative}
@@ -71,9 +67,7 @@ body[data-surface="hatch"]::before{
   background-image:repeating-linear-gradient(45deg,var(--ink) 0,var(--ink) 1px,transparent 1px,transparent 7px);
   mix-blend-mode:multiply
 }
-/* let sections stay above the overlay */
 nav.main-nav, .loader, .phero, .intro, .princ, .tl, .mwrap, .ctas, .colo, .twk-panel{position:relative;z-index:2}
-/* but keep nav lift higher */
 nav.main-nav{z-index:200}
 .loader{z-index:1000}
 
@@ -174,27 +168,8 @@ nav.main-nav{z-index:200}
     <a href="sectors.html"><span class="dot"></span>Sectors</a>
     <a href="projects.html"><span class="dot"></span>Projects</a>
     <a href="contact.html"><span class="dot"></span>Contact</a>
-    <button class="nav-burger" id="nav-burger" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span>
-    </button>
   </div>
 </nav>
-
-<!-- MOBILE MENU DRAWER -->
-<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-  <div class="mobile-menu-links">
-    <a href="index.html"><span class="no">01</span>Home</a>
-    <a href="about.html" class="active"><span class="no">02</span>About</a>
-    <a href="services.html"><span class="no">03</span>Services</a>
-    <a href="sectors.html"><span class="no">04</span>Sectors</a>
-    <a href="projects.html"><span class="no">05</span>Projects</a>
-    <a href="contact.html"><span class="no">06</span>Contact</a>
-  </div>
-  <div class="mobile-menu-foot">
-    <span>Alpine MI · Est. 2022</span>
-    <a href="mailto:sales@alpinemi.co.uk">sales@alpinemi.co.uk</a>
-  </div>
-</div>
 
 <!-- PAGE HERO -->
 <section class="phero">
@@ -218,7 +193,7 @@ nav.main-nav{z-index:200}
   <div class="intro-l">
     <h2>Three years on a <u>single client.</u> <em>That's the standard, not the exception.</em></h2>
     <p>Alpine MI was founded in 2022 to bring a single, rigorous standard to London's construction market. We work for restaurant operators, leisure groups and private clients on schemes that demand <b>programme certainty</b> — and on heritage homes that demand <b>delicacy</b>.</p>
-    <p>Every project is managed end-to-end by our directors. <b>No subcontracted accountability, no programme drift, no awkward handovers.</b> One company, one P&amp;L, one point of contact from brief to twelve-month aftercare.</p>
+    <p><b>Working closely with clients,</b> every project is managed end-to-end by our directors. <b>No subcontracted accountability, no programme drift, no awkward handovers.</b> One company, one P&amp;L, one point of contact from brief to twelve-month aftercare.</p>
   </div>
   <div class="intro-r">
     <img src="DSC04354.jpg" alt="Alpine MI — bar fit-out detail">
@@ -299,7 +274,7 @@ nav.main-nav{z-index:200}
     <span class="mi"><em>Leisure</em> <span class="star">•</span></span>
     <span class="mi"><em>Residential</em> <span class="star">•</span></span>
     <span class="mi"><em>Listed</em> <span class="star">•</span></span>
-    <span class="mi"><em>Heritage</em> <span classStar">•</span></span>
+    <span class="mi"><em>Heritage</em> <span class="star">•</span></span>
   </div>
 </div>
 
