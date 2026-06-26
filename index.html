@@ -206,30 +206,17 @@
 .tlist-hd .num b{color:var(--ink);font-weight:600}
 .tlist-hd h2{font-family:var(--fd);font-weight:700;font-size:clamp(2.5rem,7vw,7rem);line-height:.9;letter-spacing:-.05em;text-transform:uppercase}
 .tlist-hd h2 em{font-style:normal;font-weight:400;color:var(--mid)}
-.tlist-hd .meta{font-family:var(--fm);font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);text-align:right;line-height:1.8}
-.tlist-hd .meta b{color:var(--ink);font-weight:600}
-.tlist-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-.tcard{padding:2.5rem 2rem 2rem;background:var(--paper);border:1px solid var(--rule);display:flex;flex-direction:column;gap:1.5rem;position:relative;transition:transform .4s var(--ease),border-color .4s var(--ease)}
-.tcard:hover{transform:translateY(-4px);border-color:var(--ink)}
-.tcard::before{content:'\201C';position:absolute;top:1rem;right:1.25rem;font-family:var(--fd);font-weight:700;font-size:5rem;line-height:.6;color:var(--teal);opacity:.85}
-.tcard-no{font-family:var(--fm);font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--mid)}
-.tcard-no b{color:var(--ink);font-weight:600}
-.tcard blockquote{font-family:var(--fd);font-weight:600;font-size:1.1rem;line-height:1.45;letter-spacing:-.015em;color:var(--ink);margin:0}
-.tcard blockquote em{font-style:normal;color:var(--mid);font-weight:500}
-.tcard blockquote .mark{color:var(--ink);background:var(--teal);font-style:normal;font-weight:600;padding:0 .12em}
-.tcard-attr{font-family:var(--fm);font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);display:flex;flex-direction:column;gap:.25rem;margin-top:auto;padding-top:1rem;border-top:1px solid var(--rule)}
-.tcard-attr b{color:var(--ink);font-weight:600}
 
 /* ── CLIENTS ── */
-.clients{padding:6rem var(--pad);border-top:1px solid var(--rule);background:var(--paper)}
-.clients-hd{display:grid;grid-template-columns:auto 1fr auto;align-items:end;gap:2rem;padding-bottom:1.5rem;border-bottom:2px solid var(--ink);margin-bottom:3.5rem}
+.clients{padding:7rem var(--pad) 0;border-top:1px solid var(--rule)}
+.clients-hd{display:grid;grid-template-columns:auto 1fr auto;align-items:end;gap:2rem;padding-bottom:1.5rem;border-bottom:2px solid var(--ink);margin-bottom:0}
 .clients-hd .num{font-family:var(--fm);font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mid)}
 .clients-hd .num b{color:var(--ink);font-weight:600}
 .clients-hd h2{font-family:var(--fd);font-weight:700;font-size:clamp(2.5rem,7vw,7rem);line-height:.9;letter-spacing:-.05em;text-transform:uppercase}
 .clients-hd h2 em{font-style:normal;font-weight:400;color:var(--mid)}
 .clients-hd .meta{font-family:var(--fm);font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);text-align:right;line-height:1.8}
 .clients-hd .meta b{color:var(--ink);font-weight:600}
-.client-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.client-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
 .client-cell{height:9rem;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:center;text-align:center;padding:1.5rem;font-family:var(--fd);font-weight:700;font-size:.95rem;letter-spacing:-.01em;text-transform:uppercase;color:var(--ink);position:relative;opacity:0;transform:translateY(20px) scale(.97);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out),background .35s var(--ease),color .35s var(--ease)}
 .client-cell.in{opacity:1;transform:none}
 .client-cell em{font-style:normal;font-weight:400;color:var(--mid);display:block;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;font-family:var(--fm);margin-top:.45rem}
@@ -417,7 +404,6 @@
         <span class="proj-num">N° 01 / Residential</span>
         <img src="hackney-01-kitchen.jpg" alt="Malvern Hackney — marble kitchen">
       </div>
-      
       <div class="proj-meta">
         <h3 class="proj-name">Malvern<br><em>Hackney</em></h3>
         <span class="proj-tags">4 Storey<br>2024</span>
@@ -429,11 +415,11 @@
         <img src="DSC04323.jpg" alt="Restaurant dining room with feature lighting">
       </div>
       <div class="proj-meta">
-     <h3 class="proj-name">KÖD<br><em>Soho</em></h3>
+        <h3 class="proj-name">KÖD<br><em>Soho</em></h3>
         <span class="proj-tags">London<br>2024</span>
       </div>
     </a>
-<a class="proj" href="case-solo-errol.html" style="text-decoration:none;color:inherit">
+    <a class="proj" href="case-solo-errol.html" style="text-decoration:none;color:inherit">
       <div class="proj-img">
         <span class="proj-num">N° 03 / Health &amp; Fitness</span>
         <img src="Solo_60_Errol_Street.jpg" alt="Solo 60 Errol Street — gym floor">
@@ -457,8 +443,6 @@
   <div class="htrack-hint">Drag · Scroll · Explore</div>
 </div>
 
-</div>
-  
 <!-- TWO-UP STUDIO -->
 <section class="two" id="about">
   <div class="two-l">
@@ -526,11 +510,12 @@
   <div class="clients-hd">
     <span class="num"><b>(05)</b> — Clients</span>
     <h2 class="clip-rev">Some of our <em>customers</em></h2>
-    <span class="meta"><b>5 clients</b><br>Selected partners</span>
+    <span class="meta"><b>6 clients</b><br>Selected partners</span>
   </div>
-  <div class="client-grid client-grid--5">
+  <div class="client-grid client-grid--6">
     <div class="client-cell"><img src="KoD.jpg" alt="KÖD"></div>
-    <div class="client-cell"><img src="Revolve.jpg" alt="Revolve Brasserie"></div>
+    <div class="client-cell"><img src="image_f22be4.png" alt="RHC Hospitality Collection"></div>
+    <div class="client-cell"><img src="sky garden logo.jpg" alt="Sky Garden London"></div>
     <div class="client-cell"><img src="VERTUS.jpg" alt="Vertus"></div>
     <div class="client-cell"><img src="PORTE_NOIR.jpg" alt="Porte Noire"></div>
     <div class="client-cell"><img src="solo60.jpg" alt="Solo Sixty"></div>
