@@ -102,15 +102,16 @@ nav.main-nav{z-index:200}
 /* ── FACTS (replaces timeline) ── */
 .tl{padding:7rem var(--pad) 6rem;border-bottom:1px solid var(--rule);background:var(--paper-2)}
 .facts-grid{margin-top:4rem;display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--ink)}
-.fact{padding:3.5rem 2rem 3.5rem 0;border-right:1px solid var(--rule);padding-right:2rem;display:flex;flex-direction:column;gap:0;position:relative;opacity:0;transform:translateY(22px);transition:opacity .75s var(--ease-out),transform .75s var(--ease-out)}
+.fact{padding:3.5rem 2rem 3.5rem 0;border-right:1px solid var(--rule);padding-right:2rem;display:flex;flex-direction:column;gap:0;position:relative;opacity:0;transform:translateY(22px);transition:opacity .75s var(--ease-out),transform .75s var(--ease-out);min-height:22rem}
 .fact:first-child{padding-left:0}
 .fact:not(:first-child){padding-left:2rem}
 .fact:last-child{border-right:none}
 .fact.fact-in{opacity:1;transform:none}
 .fact-val{font-family:var(--fd);font-weight:700;font-size:clamp(3.2rem,5.5vw,6rem);line-height:.88;letter-spacing:-.05em;color:var(--ink);font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:.06em;flex-wrap:wrap}
 .fact-val em{font-style:normal;font-size:.55em;font-weight:500;color:var(--teal);letter-spacing:-.02em;align-self:flex-start;margin-top:.3em}
-.fact-lbl{font-family:var(--f);font-size:.88rem;line-height:1.6;color:var(--mid);max-width:20ch;margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--rule)}
+.fact-lbl{font-family:var(--f);font-size:.88rem;line-height:1.28;letter-spacing:-.022em;color:var(--mid);max-width:20ch;margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--rule);text-transform:lowercase}
 .fact-lbl b{color:var(--ink);font-weight:500}
+.fact-sub{font-family:var(--fm);font-size:.58rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);opacity:.55;margin-top:auto;padding-top:1.5rem;display:block}
 
 /* ── STATS ── */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
@@ -249,18 +250,22 @@ nav.main-nav{z-index:200}
     <div class="fact">
       <div class="fact-val">80<em>%</em></div>
       <p class="fact-lbl">of our new projects come from returning clients</p>
+      <span class="fact-sub">Repeat business</span>
     </div>
     <div class="fact">
       <div class="fact-val">£25<em>m</em></div>
-      <p class="fact-lbl">project capacity, backed by PI / EL / PL insurance to match</p>
+      <p class="fact-lbl">project capacity, backed by pi / el / pl insurance to match</p>
+      <span class="fact-sub">Financial backing</span>
     </div>
     <div class="fact">
       <div class="fact-val">120<em>+</em></div>
       <p class="fact-lbl">years of combined fit-out expertise across our team</p>
+      <span class="fact-sub">Leadership &amp; expertise</span>
     </div>
     <div class="fact">
       <div class="fact-val">225k<em>sq ft+</em></div>
       <p class="fact-lbl">of commercial space refurbished in the last three years</p>
+      <span class="fact-sub">Space refurbished</span>
     </div>
   </div>
 </section>
