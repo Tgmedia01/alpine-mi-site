@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Alpine MI</title>
+<meta name="description" content="Alpine MI selected projects — hospitality, leisure, residential and workplace builds across London.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.fbar{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;padding:1.75rem var(--pad);border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:50;background:var(--paper);backdrop-filter:blur(6px)}
+.fbar .lbl{font-family:var(--fm);font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:.7rem}
+.fbar .lbl b{color:var(--ink);font-weight:600}
+.fbar .filters{display:flex;gap:.5rem;flex-wrap:wrap}
+.fchip{font-family:var(--fm);font-size:.66rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);background:transparent;border:1px solid var(--rule);padding:.55rem .85rem;cursor:pointer;transition:background .2s,color .2s,border-color .2s;line-height:1.1}
+.fchip:hover{border-color:var(--ink)}
+.fchip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.fchip.on .ct{color:var(--teal)}
+.fchip .ct{margin-left:.45rem;color:var(--mid);font-weight:400}
+.pgrid{padding:3.5rem var(--pad) 6rem;display:grid;grid-template-columns:repeat(12,1fr);gap:2.5rem 1.5rem}
+.pcard{display:flex;flex-direction:column;gap:1rem;text-decoration:none;color:var(--ink);transition:opacity .35s,filter .35s}
+.pgrid.filtered .pcard:not(.match){opacity:.18;filter:grayscale(1)}
+.pcard .img{background:var(--ink-2);overflow:hidden;position:relative;aspect-ratio:4/5}
+.pcard .img img{width:100%;height:100%;object-fit:cover;transform:scale(1.05);transition:transform 1s var(--ease-out);filter:grayscale(.1)}
+.pcard:hover .img img{transform:scale(1);filter:grayscale(0)}
+.pcard .num{position:absolute;top:.85rem;left:.85rem;font-family:var(--fm);font-size:.6rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);background:var(--teal);padding:.4rem .6rem;z-index:2}
+.pcard .sct{position:absolute;top:.85rem;right:.85rem;font-family:var(--fm);font-size:.6rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);background:rgba(0,0,0,.5);padding:.4rem .6rem;backdrop-filter:blur(4px);z-index:2}
+.pcard .meta{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding-top:.5rem}
+.pcard .name{font-family:var(--fd);font-weight:700;font-size:1.5rem;letter-spacing:-.03em;line-height:1.04;text-transform:uppercase}
+.pcard .name em{font-style:normal;font-weight:400;color:var(--mid)}
+.pcard .tags{font-family:var(--fm);font-size:.6rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);text-align:right;line-height:1.5;flex-shrink:0}
+.pcard:hover .name em{color:var(--teal)}
+.pcard.lg{grid-column:span 8}
+.pcard.lg .img{aspect-ratio:16/10}
+.pcard.md{grid-column:span 4}
+.pcard.sm{grid-column:span 4}
+.pcard.sm .img{aspect-ratio:1/1}
+.scaps{padding:7rem var(--pad);border-top:2px solid var(--ink);border-bottom:1px solid var(--rule);background:var(--paper-2)}
+.scaps-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem;margin-top:3.5rem}
+.scap{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--ink-2)}
+.scap img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;filter:grayscale(.3);transition:filter .8s,transform 1.2s var(--ease-out)}
+.scap:hover img{filter:none;transform:scale(1.03)}
+.scap .cap{position:absolute;left:1rem;bottom:1rem;font-family:var(--fm);font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);background:var(--teal);padding:.4rem .6rem}
+.scap .ovr{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:1.25rem;color:var(--paper);background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.7));opacity:0;transition:opacity .4s}
+.scap:hover .ovr{opacity:1}
+.scap .ovr h4{font-family:var(--fd);font-weight:700;font-size:1.2rem;letter-spacing:-.02em;text-transform:uppercase}
+.scap .ovr h4 em{font-style:normal;font-weight:400;color:var(--teal)}
+.ctas{padding:7rem var(--pad);background:var(--ink);color:var(--paper);display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end}
+.ctas h2{font-family:var(--fd);font-weight:700;font-size:clamp(2.5rem,7vw,7rem);line-height:.9;letter-spacing:-.05em;text-transform:uppercase}
+.ctas h2 em{font-style:normal;font-weight:400;color:rgba(255,255,255,.4)}
+.ctas h2 u{text-decoration:none;color:var(--teal)}
+.ctas a.cta-link{display:inline-flex;align-items:center;gap:1rem;font-family:var(--fm);font-size:.78rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);text-decoration:none;padding:1.1rem 1.6rem;border:1.5px solid var(--paper);transition:background .25s,color .25s,border-color .25s,transform .25s}
+.ctas a.cta-link:hover{background:var(--teal);border-color:var(--teal);color:var(--ink);transform:translateY(-2px)}
+.ctas a.cta-link::after{content:'↗';font-family:var(--fd);font-size:1.1rem}
+@media(max-width:860px){
+  .fbar{flex-direction:column;align-items:flex-start;padding:1rem 1.25rem;position:static;gap:.85rem}
+  .pgrid{grid-template-columns:1fr;gap:2.5rem;padding:2.5rem 1.25rem 3rem}
+  .pcard.lg,.pcard.md,.pcard.sm{grid-column:span 1}
+  .pcard .img,.pcard.lg .img,.pcard.sm .img{aspect-ratio:4/5}
+  .scaps{padding:4rem 1.25rem}
+  .scaps-grid{grid-template-columns:1fr;gap:1rem}
+  .ctas{grid-template-columns:1fr;padding:4rem 1.25rem}
+}
+</style>
+</head>
+<body>
+
+<div class="loader" id="loader">
+  <div class="loader-top"><span class="loader-count" id="lcount">00</span><em>—</em></div>
+  <div class="loader-bot">
+    <span><strong>Alpine MI</strong> · Projects</span>
+    <span>London &amp; SE · Est. 2022</span>
+  </div>
+</div>
+
+<nav class="main-nav" id="nav">
+  <a href="index.html" class="logo-a" aria-label="Alpine MI"><img src="Alpinemi_logo.svg" alt="Alpine MI"></a>
+  <div class="nav-r">
+    <a href="index.html"><span class="dot"></span>Home</a>
+    <a href="about.html"><span class="dot"></span>About</a>
+    <a href="services.html"><span class="dot"></span>Services</a>
+    <a href="sectors.html"><span class="dot"></span>Sectors</a>
+    <a href="projects.html" class="active"><span class="dot"></span>Projects</a>
+    <a href="contact.html"><span class="dot"></span>Contact</a>
+    <button class="nav-burger" id="nav-burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-menu-links">
+    <a href="index.html"><span class="no">01</span>Home</a>
+    <a href="about.html"><span class="no">02</span>About</a>
+    <a href="services.html"><span class="no">03</span>Services</a>
+    <a href="sectors.html"><span class="no">04</span>Sectors</a>
+    <a href="projects.html" class="active"><span class="no">05</span>Projects</a>
+    <a href="contact.html"><span class="no">06</span>Contact</a>
+  </div>
+  <div class="mobile-menu-foot">
+    <span>Alpine MI &middot; Est. 2022</span>
+    <a href="mailto:sales@alpinemi.co.uk">sales@alpinemi.co.uk</a>
+  </div>
+</div>
+
+<section class="phero">
+  <div class="phero-top">
+    <span class="crumb">Index · Projects</span>
+    <span><em>(07)</em></span>
+  </div>
+  <h1 class="phero-h1">
+    <span class="row"><span class="ws" data-d="0">selected</span></span>
+    <span class="row"><span class="ws accent" data-d="180">work.</span></span>
+  </h1>
+  <div class="phero-foot">
+    <div class="phero-foot-l">Index<br><b>2022 — 2024</b></div>
+    <p class="phero-foot-c">A working archive across <b>hospitality, leisure, residential and workplace</b>. Each scheme delivered end-to-end by Alpine MI directors and our in-house teams.</p>
+    <div class="phero-foot-r"><b>Total</b><br>07 schemes</div>
+  </div>
+</section>
+
+<div class="fbar" id="fbar">
+  <div class="lbl"><b>(01)</b> · Filter by sector</div>
+  <div class="filters">
+    <button class="fchip on" data-f="all">All<span class="ct">07</span></button>
+    <button class="fchip" data-f="hospitality">Hospitality<span class="ct">02</span></button>
+    <button class="fchip" data-f="leisure">Leisure<span class="ct">02</span></button>
+    <button class="fchip" data-f="residential">Residential<span class="ct">01</span></button>
+    <button class="fchip" data-f="retail">Retail<span class="ct">01</span></button>
+    <button class="fchip" data-f="workplace">Workplace<span class="ct">01</span></button>
+  </div>
+</div>
+
+<section class="pgrid" id="pgrid">
+  <a href="case-malvern-hackney.html" class="pcard lg" data-sectors="residential">
+    <div class="img"><span class="num">N° 01 / 07</span><span class="sct">Residential</span><img src="hackney-01-kitchen.jpg" alt="Malvern Hackney — marble kitchen"></div>
+    <div class="meta"><h3 class="name">Malvern<br><em>Hackney</em></h3><span class="tags">4 Storey · E8<br>2024</span></div>
+  </a>
+  <a href="case-kod-soho.html" class="pcard md" data-sectors="hospitality">
+    <div class="img"><span class="num">N° 02 / 07</span><span class="sct">Hospitality</span><img src="DSC04323.jpg" alt="KÖD Soho — dining room"></div>
+    <div class="meta"><h3 class="name">KÖD<br><em>Soho</em></h3><span class="tags">W1 · Soho<br>2024</span></div>
+  </a>
+  <a href="case-solo-cornhill.html" class="pcard sm" data-sectors="leisure">
+    <div class="img"><span class="num">N° 03 / 07</span><span class="sct">Leisure</span><img src="2_1.jpg" alt="Solo Sixty Cornhill — weights"></div>
+    <div class="meta"><h3 class="name">Solo Sixty<br><em>Cornhill</em></h3><span class="tags">EC3<br>2023</span></div>
+  </a>
+  <a href="case-solo-hanbury.html" class="pcard sm" data-sectors="leisure">
+    <div class="img"><span class="num">N° 04 / 07</span><span class="sct">Leisure</span><img src="3_1.jpg" alt="Solo Sixty Hanbury — interior"></div>
+    <div class="meta"><h3 class="name">Solo Sixty<br><em>Hanbury</em></h3><span class="tags">E1<br>2023</span></div>
+  </a>
+  <a href="case-showroom-se9.html" class="pcard md" data-sectors="retail">
+    <div class="img"><span class="num">N° 05 / 07</span><span class="sct">Retail</span><img src="6.jpg" alt="Retail showroom"></div>
+    <div class="meta"><h3 class="name">Showroom<br><em>SE9</em></h3><span class="tags">SE9<br>2023</span></div>
+  </a>
+  <a href="case-revolve.html" class="pcard md" data-sectors="hospitality">
+    <div class="img"><span class="num">N° 06 / 07</span><span class="sct">Hospitality</span><img src="Revolve_front.jpg" alt="Revolve Brasserie — 100 Liverpool Street exterior"></div>
+    <div class="meta"><h3 class="name">Revolve<br><em>Broadgate</em></h3><span class="tags">EC2<br>2022</span></div>
+  </a>
+  <a href="case-office-south-london.html" class="pcard sm" data-sectors="workplace">
+    <div class="img"><span class="num">N° 07 / 07</span><span class="sct">Workplace</span><img src="Office Complete 5.jpeg" alt="Office South London — glazed meeting room"></div>
+    <div class="meta"><h3 class="name">Office<br><em>South London</em></h3><span class="tags">SE London<br>2022</span></div>
+  </a>
+</section>
+
+<section class="scaps">
+  <div class="shead" style="background:var(--paper-2);border-top:none;padding:0 0 1.25rem">
+    <span class="shead-no"><b>(02)</b> — Captures</span>
+    <h2 class="shead-title">Detail <em>library</em></h2>
+    <span class="shead-meta">Photographed<br><b>2022 — 2024</b></span>
+  </div>
+  <div class="scaps-grid">
+    <a href="case-kod-soho.html" class="scap"><img src="DSC04324.jpg" alt="Capture"><span class="cap">KÖD · Bar front</span><div class="ovr"><h4>Bar <em>front</em></h4></div></a>
+    <a href="case-kod-soho.html" class="scap"><img src="DSC04331.jpg" alt="Capture"><span class="cap">KÖD · Pass</span><div class="ovr"><h4>The <em>pass</em></h4></div></a>
+    <a href="case-kod-soho.html" class="scap"><img src="DSC04354.jpg" alt="Capture"><span class="cap">KÖD · Lounge</span><div class="ovr"><h4>Lounge <em>seating</em></h4></div></a>
+    <a href="case-revolve.html" class="scap"><img src="0P4A0415.jpg" alt="Capture"><span class="cap">Revolve · Bar view</span><div class="ovr"><h4>Bar <em>view</em></h4></div></a>
+    <a href="case-revolve.html" class="scap"><img src="0P4A0459-HDR.jpg" alt="Capture"><span class="cap">Revolve · Private dining</span><div class="ovr"><h4>Private <em>dining</em></h4></div></a>
+    <a href="case-office-south-london.html" class="scap"><img src="Office Complete 8.jpeg" alt="Capture"><span class="cap">Office · Kitchen</span><div class="ovr"><h4>Staff <em>kitchen</em></h4></div></a>
+  </div>
+</section>
+
+<section class="ctas">
+  <h2>Want the <u>full deck?</u><br><em>It's a phone call.</em></h2>
+  <a class="cta-link" href="contact.html">Request portfolio</a>
+</section>
+
+<section class="colo" id="contact">
+  <h2>Let's <u>build</u><br><em>something.</em></h2>
+  <div class="colo-grid">
+    <div class="colo-col">
+      <h4>Enquiries</h4>
+      <a href="mailto:sales@alpinemi.co.uk">sales@alpinemi.co.uk</a>
+      <a href="tel:02036171144">0203 617 1144</a>
+      <div class="colo-social">
+        <a href="https://www.instagram.com/alpine.mi" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          Instagram
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61591220498993&ref=1" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Facebook
+        </a>
+      </div>
+    </div>
+    <div class="colo-col">
+      <h4>Registered office</h4>
+      <span>180 Bexley Road</span>
+      <span>Eltham, London</span>
+      <span>England, SE9 2PH</span>
+    </div>
+    <div class="colo-col">
+      <h4>Navigation</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="sectors.html">Sectors</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="colo-col">
+      <h4>Coverage</h4>
+      <span>London</span>
+      <span>South East</span>
+    </div>
+  </div>
+  <div class="acred">
+    <div class="acred-lbl">Accreditations &amp; Memberships</div>
+    <div class="acred-row">
+      <div class="acred-item"><img src="Chas_logo.svg" alt="CHAS accreditation"></div>
+      <div class="acred-item"><img src="Construction_online.svg" alt="Constructionline accreditation"></div>
+      <div class="acred-item"><img src="SafeContractor_Certification Seal_RGB.svg" alt="SafeContractor certification"></div>
+    </div>
+  </div>
+  <div class="colo-foot">
+    <span>&copy; <script>document.write(new Date().getFullYear());</script> Alpine MI &middot; Co. No. 13895571 &middot; England &amp; Wales</span>
+    <span><a href="#">Privacy</a> &nbsp;&middot;&nbsp; <a href="#">Terms</a> &nbsp;&middot;&nbsp; by <a href="https://tgmedia.uk" target="_blank" rel="noopener">tgmedia.uk</a></span>
+  </div>
+</section>
+
+<script src="shared.js"></script>
+<script>
+(function(){
+  var grid=document.getElementById('pgrid');
+  var chips=document.querySelectorAll('.fchip');
+  chips.forEach(function(c){
+    c.addEventListener('click',function(){
+      chips.forEach(function(x){x.classList.remove('on');});
+      c.classList.add('on');
+      var f=c.dataset.f;
+      if(f==='all'){grid.classList.remove('filtered');grid.querySelectorAll('.pcard').forEach(function(p){p.classList.remove('match');});return;}
+      grid.classList.add('filtered');
+      grid.querySelectorAll('.pcard').forEach(function(p){
+        var has=(p.dataset.sectors||'').split(/\s+/).includes(f);
+        p.classList.toggle('match',has);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
