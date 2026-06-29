@@ -12,7 +12,7 @@
 <style>
 /* ── SECTORS LIST ── */
 .sectors{border-top:2px solid var(--ink)}
-.sector{display:grid;grid-template-columns:80px 1fr 320px 1fr 60px;gap:2.5rem;align-items:stretch;padding:0;border-bottom:1px solid var(--rule);position:relative;background:var(--paper);transition:background .35s var(--ease);cursor:default}
+.sector{display:grid;grid-template-columns:80px 1fr 320px 1fr 60px;gap:2.5rem;align-items:stretch;padding:0;border-bottom:1px solid var(--rule);position:relative;background:var(--paper);transition:background .35s var(--ease);cursor:pointer;text-decoration:none;color:inherit}
 .sector:hover{background:var(--paper-2)}
 .sector::after{content:'';position:absolute;left:0;top:0;width:0;height:2px;background:var(--teal);transition:width .8s var(--ease)}
 .sector.in::after{width:100%}
@@ -34,6 +34,7 @@
 .sector-tags span{font-family:var(--fm);font-size:.6rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);border:1px solid var(--rule);padding:.3rem .55rem;line-height:1.2}
 .sector-arr{padding:3rem 2rem 3rem 0;align-self:start;font-family:var(--fd);font-weight:500;font-size:1.6rem;color:var(--ink);justify-self:end;transition:transform .35s var(--ease),color .35s}
 .sector:hover .sector-arr{transform:translateX(8px) translateY(-3px);color:var(--teal)}
+
 /* ── CROSSWORK STRIP ── */
 .cross{padding:7rem var(--pad);border-bottom:1px solid var(--rule);background:var(--paper-2);display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
 .cross-l h2{font-family:var(--fd);font-weight:700;font-size:clamp(2.2rem,4.5vw,4rem);line-height:.95;letter-spacing:-.04em;text-transform:uppercase;max-width:18ch}
@@ -51,6 +52,7 @@
 .cmini .num{margin-top:auto;font-family:var(--fm);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);font-weight:500;display:flex;justify-content:space-between}
 .cmini .num b{color:var(--ink);font-weight:600}
 .cmini .num em{font-style:normal;color:var(--mid);font-weight:400}
+
 /* ── CTA ── */
 .ctas{padding:7rem var(--pad);background:var(--ink);color:var(--paper);display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end}
 .ctas h2{font-family:var(--fd);font-weight:700;font-size:clamp(2.5rem,7vw,7rem);line-height:.9;letter-spacing:-.05em;text-transform:uppercase}
@@ -59,13 +61,15 @@
 .ctas a.cta-link{display:inline-flex;align-items:center;gap:1rem;font-family:var(--fm);font-size:.78rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);text-decoration:none;padding:1.1rem 1.6rem;border:1.5px solid var(--paper);transition:background .25s,color .25s,border-color .25s,transform .25s}
 .ctas a.cta-link:hover{background:var(--teal);border-color:var(--teal);color:var(--ink);transform:translateY(-2px)}
 .ctas a.cta-link::after{content:'↗';font-family:var(--fd);font-size:1.1rem}
+
 @media(max-width:1100px){
   .sector{grid-template-columns:60px 1fr 220px 1fr 40px;gap:1.5rem}
 }
 @media(max-width:860px){
-  .sector{grid-template-columns:1fr;gap:.4rem;padding:2.5rem 1.25rem 3rem}
+  .sector{grid-template-columns:1fr !important;gap:.4rem;padding:2.5rem 1.25rem 3rem}
   .sector-no{padding:0;margin-bottom:.5rem}
   .sector-name{padding:0;margin-bottom:1.5rem}
+  .sector:hover .sector-name h2{transform:none}
   .sector-img{min-height:14rem;margin:0 0 1.5rem}
   .sector-body{padding:0}
   .sector-arr{display:none}
@@ -132,7 +136,7 @@
 </section>
 
 <section class="sectors">
-  <a class="sector" href="sector-hospitality.html" style="text-decoration:none;color:inherit;display:grid;grid-template-columns:80px 1fr 320px 1fr 60px;gap:2.5rem;align-items:stretch">
+  <a class="sector" href="sector-hospitality.html">
     <span class="sector-no"><b>S/01</b>Hospitality</span>
     <div class="sector-name"><h2>Hospitality &amp; <em>Restaurants</em></h2></div>
     <div class="sector-img">
@@ -148,7 +152,7 @@
     <span class="sector-arr">↗</span>
   </a>
 
-  <a class="sector" href="sector-leisure.html" style="text-decoration:none;color:inherit;display:grid;grid-template-columns:80px 1fr 320px 1fr 60px;gap:2.5rem;align-items:stretch">
+  <a class="sector" href="sector-leisure.html">
     <span class="sector-no"><b>S/02</b>Leisure</span>
     <div class="sector-name"><h2>Leisure &amp; <em>Fitness</em></h2></div>
     <div class="sector-img">
@@ -164,7 +168,7 @@
     <span class="sector-arr">↗</span>
   </a>
 
-  <a class="sector" href="sector-residential.html" style="text-decoration:none;color:inherit;display:grid;grid-template-columns:80px 1fr 320px 1fr 60px;gap:2.5rem;align-items:stretch">
+  <a class="sector" href="sector-residential.html">
     <span class="sector-no"><b>S/03</b>Residential</span>
     <div class="sector-name"><h2>Residential <em>&amp; Refurb</em></h2></div>
     <div class="sector-img">
@@ -180,7 +184,7 @@
     <span class="sector-arr">↗</span>
   </a>
 
-  <a class="sector" href="sector-retail.html" style="text-decoration:none;color:inherit;display:grid;grid-template-columns:80px 1fr 320px 1fr 60px;gap:2.5rem;align-items:stretch">
+  <a class="sector" href="sector-retail.html">
     <span class="sector-no"><b>S/04</b>Retail</span>
     <div class="sector-name"><h2>Retail &amp; <em>Showroom</em></h2></div>
     <div class="sector-img">
@@ -196,7 +200,7 @@
     <span class="sector-arr">↗</span>
   </a>
 
-  <a class="sector" href="sector-office.html" style="text-decoration:none;color:inherit;display:grid;grid-template-columns:80px 1fr 320px 1fr 60px;gap:2.5rem;align-items:stretch">
+  <a class="sector" href="sector-office.html">
     <span class="sector-no"><b>S/05</b>Office</span>
     <div class="sector-name"><h2>Workplace &amp; <em>Office</em></h2></div>
     <div class="sector-img">
