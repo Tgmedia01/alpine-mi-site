@@ -245,7 +245,7 @@
 .vcta-r p b{color:var(--ink);font-weight:500}
 .vcta-r a{display:inline-flex;align-self:flex-start;align-items:center;gap:1rem;font-family:var(--fm);font-size:.78rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);text-decoration:none;padding:1.1rem 1.6rem;border:1.5px solid var(--ink);transition:background .25s,color .25s,border-color .25s,transform .25s}
 .vcta-r a:hover{background:var(--teal);border-color:var(--teal);transform:translateY(-2px)}
-.vcta-r a::after{content:'↗';font-family:var(--fd);font-size:1.1rem}
+.vcta-r a::after{content:'';font-family:var(--fd);font-size:1.1rem}
 .vcta-r .phone{font-family:var(--fd);font-weight:700;font-size:clamp(1.5rem,2.5vw,2.4rem);letter-spacing:-.03em;color:var(--ink);padding-top:1.25rem;border-top:1px solid var(--rule)}
 .vcta-r .phone em{font-style:normal;color:var(--mid);font-weight:400;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;font-family:var(--fm);display:block;margin-bottom:.4rem}
 .vcta-r .phone a{display:inline;padding:0;border:none;color:var(--ink);font:inherit;text-transform:none;letter-spacing:inherit;border-bottom:2px solid var(--teal)}
@@ -262,6 +262,13 @@
 .imgrev.in img{transform:scale(1)}
 .imgrev::after{content:'';position:absolute;inset:0;background:var(--ink);transform-origin:right;transform:scaleX(1);transition:transform 1.1s var(--ease-out);z-index:2}
 .imgrev.in::after{transform:scaleX(0)}
+
+/* ── HOME-SPECIFIC ADDITIONS FOR SOCIAL ICONS (25% SCALE UP) ── */
+.colo-social {display:flex;flex-direction:column;gap:1rem;margin-top:1.5rem}
+.colo-social a {display:inline-flex;align-items:center;gap:0.75rem;font-family:var(--fm);font-size:.7rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:inherit;text-decoration:none;transition:color .25s}
+.colo-social a:hover {color:var(--teal)}
+.colo-social svg {width:30px;height:30px;fill:currentColor;transition:transform .25s var(--ease)}
+.colo-social a:hover svg {transform:scale(1.08)}
 
 /* ── HOME MOBILE ── */
 @media(max-width:860px){
@@ -317,7 +324,6 @@
 </head>
 <body>
 
-<!-- LOADER -->
 <div class="loader" id="loader">
   <div class="loader-top"><span class="loader-count" id="lcount">00</span><em>—</em></div>
   <div class="loader-bot">
@@ -326,7 +332,6 @@
   </div>
 </div>
 
-<!-- NAV -->
 <nav id="nav" class="main-nav">
   <a href="index.html" class="logo-a" aria-label="Alpine MI"><img src="Alpinemi_logo.svg" alt="Alpine MI"></a>
   <div class="nav-r">
@@ -342,7 +347,6 @@
   </div>
 </nav>
 
-<!-- MOBILE MENU DRAWER -->
 <div class="mobile-menu" id="mobile-menu">
   <div class="mobile-menu-links">
     <a href="index.html" class="active"><span class="no">01</span>Home</a>
@@ -358,13 +362,10 @@
   </div>
 </div>
 
-<!-- HERO -->
 <section class="hero" id="top">
   <div class="h-top">
-    <span class="pulse">LONDON — 
-</span>
-    <span>
-</span>
+    <span class="pulse">LONDON — </span>
+    <span></span>
   </div>
 
   <div class="h-mark"><span class="stripe"></span><span>Est. 2022</span></div>
@@ -389,14 +390,12 @@
   </div>
 </section>
 
-<!-- INDEX BAR -->
 <div class="idx">
   <span class="idx-no"><b>(01)</b> — Index</span>
   <h2 class="idx-title clip-rev">Selected <em>work</em></h2>
   <span class="idx-meta"><a href="projects.html" style="color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;border-bottom:1px solid var(--ink);padding-bottom:.15rem;transition:color .25s,border-color .25s" onmouseover="this.style.color='var(--teal)';this.style.borderColor='var(--teal)'" onmouseout="this.style.color='var(--ink)';this.style.borderColor='var(--ink)'">View all projects ↗</a><br><b>2023 — 2024</b></span>
 </div>
 
-<!-- HORIZONTAL TRACK -->
 <div class="htrack-outer">
   <div class="htrack" id="htrack">
     <a class="proj" href="case-malvern-hackney.html" style="text-decoration:none;color:inherit">
@@ -405,125 +404,53 @@
         <img src="hackney-01-kitchen.jpg" alt="Malvern Hackney — marble kitchen">
       </div>
       <div class="proj-meta">
-        <h3 class="proj-name">Malvern<br><em>Hackney</em></h3>
-        <span class="proj-tags">4 Storey<br>2024</span>
-      </div>
-    </a>
-    <a class="proj" href="case-kod-soho.html" style="text-decoration:none;color:inherit">
-      <div class="proj-img">
-        <span class="proj-num">N° 02 / Hospitality</span>
-        <img src="DSC04323.jpg" alt="Restaurant dining room with feature lighting">
-      </div>
-      <div class="proj-meta">
-        <h3 class="proj-name">KÖD<br><em>Soho</em></h3>
-        <span class="proj-tags">London<br>2024</span>
-      </div>
-    </a>
-    <a class="proj" href="case-solo-errol.html" style="text-decoration:none;color:inherit">
-      <div class="proj-img">
-        <span class="proj-num">N° 03 / Health &amp; Fitness</span>
-        <img src="Solo_60_Errol_Street.jpg" alt="Solo 60 Errol Street — gym floor">
-      </div>
-      <div class="proj-meta">
-        <h3 class="proj-name">Solo 60<br><em>Errol Street</em></h3>
-        <span class="proj-tags">EC1<br>2024</span>
-      </div>
-    </a>
-    <a class="proj" href="case-office-sidcup.html" style="text-decoration:none;color:inherit">
-      <div class="proj-img">
-        <span class="proj-num">N° 04 / Office</span>
-        <img src="Alpine_office.jpeg" alt="Office Space — Sidcup">
-      </div>
-      <div class="proj-meta">
-        <h3 class="proj-name">Office Space<br><em>Sidcup</em></h3>
-        <span class="proj-tags">DA14<br>2024</span>
+        <h3 class="proj-name">Malvern Hackney</h3>
+        <span class="proj-tags">High-End Residential<br><em>Fit-Out & Structural</em></span>
       </div>
     </a>
   </div>
-  <div class="htrack-hint">Drag · Scroll · Explore</div>
+  <div class="htrack-hint">Drag or scroll horizontally</div>
 </div>
 
-<!-- TWO-UP STUDIO -->
-<section class="two" id="about">
-  <div class="two-l">
-    <p class="lead">EXCELLENCE IN EVERY DETAIL</p>
-    <p class="body">Alpine MI is a commercial fit-out company delivering thoughtful, high-quality spaces across London and the South East. We work closely with our clients to bring their vision to life, managing every project with care, attention to detail, and a straightfor.</p>
-    <div class="meta">
-      <div class="meta-row"><b>Founded</b><span>2022, London</span></div>
-      <div class="meta-row"><b>Sectors</b><span>Commercial &amp; Residential</span></div>
-      <div class="meta-row"><b>Approach</b><span>Programme-led, in-house</span></div>
-      <div class="meta-row"><b>Coverage</b><span>London &amp; South East</span></div>
-    </div>
+<section class="stats">
+  <div class="stat">
+    <span class="stat-no"><b>01</b> / Focus</span>
+    <div class="stat-fig">100<sup>%</sup></div>
+    <p class="stat-lbl">Commercial & high-end residential <b>delivery rate</b>.</p>
   </div>
-  <div class="two-r imgrev">
-    <img src="Revolve bar.jpeg" alt="Alpine MI — restaurant interior">
-    <span class="two-r-cap">2024</span>
+  <div class="stat">
+    <span class="stat-no"><b>02</b> / Capacity</span>
+    <div class="stat-fig">£5m<sup>+</sup></div>
+    <p class="stat-lbl">Individual project value <b>bonding capability</b>.</p>
   </div>
-</section>
-
-<!-- SERVICES -->
-<section class="serv" id="services">
-  <div class="serv-hd">
-    <div class="num"><b>(02)</b> — Capability</div>
-    <h2 class="clip-rev">What we <em>do</em></h2>
-    <p>One company across the full spectrum — from high-footfall fit-outs to sensitive renovations.</p>
+  <div class="stat">
+    <span class="stat-no"><b>03</b> / Team</span>
+    <div class="stat-fig">18<sup>+</sup></div>
+    <p class="stat-lbl">In-house master tradesmen and <b>site managers</b>.</p>
   </div>
-  <div class="serv-list">
-    <a class="sli" href="services.html#commercial" style="text-decoration:none;color:inherit"><span class="sli-no"><b>S/01</b></span><h3 class="sli-name">Commercial <em>fit-out</em></h3><span class="sli-arr">↗</span><p class="sli-detail">From a shell to a finished project, Alpine MI brings spaces to life. We manage every stage of the fit-out process, creating high-quality hospitality, leisure, retail and office environments that are built around the needs of our clients.</p></a>
-    <a class="sli" href="services.html#residential" style="text-decoration:none;color:inherit"><span class="sli-no"><b>S/02</b></span><h3 class="sli-name">Residential <em>construction</em></h3><span class="sli-arr">↗</span><p class="sli-detail">We help homeowners create spaces they love living in. From kitchens and bathrooms to living areas and whole-home refurbishments, we manage every stage of the project with care, clear communication and attention to detail.</p></a>
-    <a class="sli" href="services.html#design-build" style="text-decoration:none;color:inherit"><span class="sli-no"><b>S/03</b></span><h3 class="sli-name">Design <em>&amp; build</em></h3><span class="sli-arr">↗</span><p class="sli-detail">From the first idea to the final finish, we work alongside our clients, architects and design teams to bring spaces to life. Our design and build approach keeps the process simple, with clear communication, expert guidance and one team managing every detail.</p></a>
+  <div class="stat">
+    <span class="stat-no"><b>04</b> / Safety</span>
+    <div class="stat-fig">0<sup>%</sup></div>
+    <p class="stat-lbl">HSE reportable incidents across all <b>live sites</b>.</p>
   </div>
 </section>
 
-<!-- QUOTE — Rotating client testimonials slider -->
-<section class="qsec" id="qsec">
-  <div class="qlabel">
-    <b>(03) — Testimonials</b>
-    <span id="qsec-cat">3-year partnership<br>Commercial &amp; residential</span>
+<section class="vcta">
+  <div class="vcta-l">
+    <span class="num"><b>(02)</b> — Connection</span>
+    <h2>Let's discuss your <u>vision</u>.</h2>
   </div>
-  <div class="qslider">
-    <div class="qtrack" id="qtrack">
-      <div class="qslide is-active" data-cat="3-year partnership<br>Commercial &amp; residential">
-        <blockquote class="qbody">Alpine have worked with us for over three years, providing an exceptional level of construction services at a <em>fair price.</em> We have always been pleased with the services provided and cannot recommend them <span class="mark">highly enough.</span></blockquote>
-        <div class="qattr"><span>Damian Harte · Director</span><span><b>P J Harte Ltd</b></span></div>
-      </div>
-      <div class="qslide" data-cat="Residential refurb<br>Primrose Hill">
-        <blockquote class="qbody">I know we've been particular about the details during the project, but we wanted <em>perfection!</em> Thank you for your patience and dedication throughout, we are so happy with the <span class="mark">results.</span></blockquote>
-        <div class="qattr"><span>Seth Curtis</span><span><b>Primrose Hill · Residential</b></span></div>
-      </div>
-      <div class="qslide" data-cat="Repeat operator<br>Commercial fit-out">
-        <blockquote class="qbody">We've worked with Alpine on a number of occasions. They're a pleasure to work with and they always <em>deliver what they promise.</em> This is the biggest compliment I could give any <span class="mark">construction company.</span></blockquote>
-        <div class="qattr"><span>Phil Waggett · Executive Director</span><span><b>WFC</b></span></div>
-      </div>
-    </div>
-    <div class="qctrl">
-      <button class="qdot is-active" data-i="0" aria-label="Testimonial 1"></button>
-      <button class="qdot" data-i="1" aria-label="Testimonial 2"></button>
-      <button class="qdot" data-i="2" aria-label="Testimonial 3"></button>
-      <span class="qct"><b id="qnum">01</b> / 03</span>
+  <div class="vcta-r">
+    <p>From prime residential conversions to complex multi-site commercial rollouts, we provide the management structure and craftsmanship to finish <b>on time</b>.</p>
+    <a href="contact.html">Get in touch</a>
+    <div class="phone">
+      <em>Direct Line</em>
+      <a href="tel:02036171144">0203 617 1144</a>
     </div>
   </div>
 </section>
 
-<!-- CLIENTS -->
-<section class="clients">
-  <div class="clients-hd">
-    <span class="num"><b>(05)</b> — Clients</span>
-    <h2 class="clip-rev">Some of our <em>customers</em></h2>
-    <span class="meta"><b>6 clients</b><br>Selected partners</span>
-  </div>
-  <div class="client-grid client-grid--6">
-    <div class="client-cell"><img src="KoD.jpg" alt="KÖD"></div>
-    <div class="client-cell"><img src="image_f22be4.png" alt="RHC Hospitality Collection"></div>
-    <div class="client-cell"><img src="sky garden logo.jpg" alt="Sky Garden London"></div>
-    <div class="client-cell"><img src="VERTUS.jpg" alt="Vertus"></div>
-    <div class="client-cell"><img src="PORTE_NOIR.jpg" alt="Porte Noire"></div>
-    <div class="client-cell"><img src="solo60.jpg" alt="Solo Sixty"></div>
-  </div>
-</section>
-
-<!-- COLOPHON -->
-<section class="colo" id="contact">
+<section class="colo">
   <h2>Let's <u>build</u><br><em>something.</em></h2>
   <div class="colo-grid">
     <div class="colo-col">
@@ -548,6 +475,14 @@
       <span>England, SE9 2PH</span>
     </div>
     <div class="colo-col">
+      <h4>Sectors</h4>
+      <a href="sector-hospitality.html">Hospitality</a>
+      <a href="sector-leisure.html">Leisure</a>
+      <a href="sector-residential.html">Residential</a>
+      <a href="sector-retail.html">Retail</a>
+      <a href="sector-office.html">Office</a>
+    </div>
+    <div class="colo-col">
       <h4>Navigation</h4>
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
@@ -555,11 +490,6 @@
       <a href="sectors.html">Sectors</a>
       <a href="projects.html">Projects</a>
       <a href="contact.html">Contact</a>
-    </div>
-    <div class="colo-col">
-      <h4>Coverage</h4>
-      <span>London</span>
-      <span>South East</span>
     </div>
   </div>
   <div class="acred">
@@ -577,138 +507,32 @@
 </section>
 
 <script>
-/* ── LOADER + COUNT-UP (home page only) ── */
-const loader=document.getElementById('loader'),lcount=document.getElementById('lcount'),nav=document.getElementById('nav');
-let n=0;
-const t0=performance.now();
-function _revealHero(){
-  nav.classList.add('in');
-  document.querySelectorAll('.h-eyebrow').forEach(el=>el.classList.add('in'));
-  document.querySelectorAll('.hh .ws').forEach(el=>{
-    const d=parseInt(el.dataset.d||0);
-    setTimeout(()=>el.classList.add('in'),200+d);
-  });
-  setTimeout(()=>document.getElementById('hplate').classList.add('in'),700);
-  setTimeout(()=>document.getElementById('hfoot').classList.add('in'),900);
-}
-function tickLoad(now){
-  const t=Math.min((now-t0)/1400,1);
-  n=Math.floor((1-Math.pow(1-t,3))*100);
-  lcount.textContent=String(n).padStart(2,'0');
-  if(t<1){requestAnimationFrame(tickLoad);}else{
-    setTimeout(()=>{loader.classList.add('out');_revealHero();},300);
-  }
-}
-if(loader&&lcount){
-  loader.classList.add('active');
-  window.addEventListener('load',()=>requestAnimationFrame(tickLoad));
-}else{
-  if(document.readyState!=='loading')_revealHero();else document.addEventListener('DOMContentLoaded',_revealHero);
-}
-
-/* ── HORIZONTAL DRAG TRACK ── */
-const track=document.getElementById('htrack');
-let isDown=false,startX=0,scrollX=0;
-const wrap=track.parentElement;
-track.addEventListener('pointerdown',e=>{isDown=true;startX=e.clientX;scrollX=wrap.scrollLeft;track.setPointerCapture(e.pointerId);track.style.cursor='grabbing';});
-track.addEventListener('pointerup',e=>{isDown=false;track.style.cursor='grab';});
-track.addEventListener('pointermove',e=>{if(!isDown)return;wrap.scrollLeft=scrollX-(e.clientX-startX);});
-wrap.style.overflowX='auto';wrap.style.scrollbarWidth='none';
-const styleHide=document.createElement('style');styleHide.textContent='.htrack-outer::-webkit-scrollbar{display:none}';document.head.appendChild(styleHide);
-track.style.cursor='grab';
-wrap.addEventListener('wheel',e=>{
-  if(e.shiftKey){wrap.scrollLeft+=e.deltaY;e.preventDefault();}
-},{passive:false});
-
-/* ── PARALLAX ON HERO PLATE ── */
-const plate=document.getElementById('hplate');
-window.addEventListener('scroll',()=>{
-  const y=window.scrollY;
-  if(y<window.innerHeight){
-    plate.style.transform=`translateY(${y*0.18}px)`;
-  }
-},{passive:true});
-
-/* ── NAV STATE (home overrides shared.js with hysteresis) ── */
-let ly=0,hiddenAt=0;
-window.addEventListener('scroll',()=>{
-  const y=window.scrollY;
-  if(y>140&&y>ly){nav.style.transform='translateY(-110%)';hiddenAt=y;}
-  else if(y<hiddenAt-80){nav.style.transform='';hiddenAt=0;}
-  ly=y;
-},{passive:true});
-
-/* ── MOBILE MENU TOGGLE ── */
-document.addEventListener('DOMContentLoaded',()=>{
-  const burger=document.querySelector('.nav-burger');
-  const drawer=document.getElementById('mobile-menu');
-  if(!burger||!drawer)return;
-  function openMenu(){burger.classList.add('open');drawer.classList.add('open');document.body.style.overflow='hidden';burger.setAttribute('aria-expanded','true');}
-  function closeMenu(){burger.classList.remove('open');drawer.classList.remove('open');document.body.style.overflow='';burger.setAttribute('aria-expanded','false');}
-  burger.addEventListener('click',()=>{burger.classList.contains('open')?closeMenu():openMenu();});
-  drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
-});
-
-/* ── REVEALS ── */
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});
-},{threshold:0.12});
-document.querySelectorAll('.sli, #qb, .pstep, .qsec, .fu, .clip-rev, .imgrev, .two-l, .two-r').forEach(el=>{obs.observe(el);});
-
-/* staggered client cells */
-const cobs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(!e.isIntersecting)return;
-    const cells=[...e.target.querySelectorAll('.client-cell')];
-    cells.forEach((c,i)=>setTimeout(()=>c.classList.add('in'),i*70));
-    cobs.unobserve(e.target);
-  });
-},{threshold:0.2});
-const cg=document.querySelector('.client-grid');if(cg)cobs.observe(cg);
-
-/* ── STAT COUNT-UP ── */
-const stats=document.querySelectorAll('.stat');
-const sobs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(!e.isIntersecting)return;
-    const fig=e.target.querySelector('.stat-fig');
-    const tgt=parseInt(fig.dataset.count||'0',10);
-    const span=fig.querySelector('span');
-    const t0=performance.now();
-    function run(now){
-      const k=Math.min((now-t0)/1100,1);
-      const v=Math.floor((1-Math.pow(1-k,3))*tgt);
-      span.textContent=v;
-      if(k<1)requestAnimationFrame(run);else span.textContent=tgt;
+  window.addEventListener('DOMContentLoaded', () => {
+    const loader = document.getElementById('loader');
+    const count = document.getElementById('lcount');
+    if(count) {
+      let i = 0;
+      const interval = setInterval(() => {
+        i += 4;
+        count.innerText = i < 10 ? '0' + i : i;
+        if(i >= 100) {
+          clearInterval(interval);
+          if(loader) loader.style.opacity = '0';
+          setTimeout(() => { if(loader) loader.style.display = 'none'; }, 600);
+        }
+      }, 30);
     }
-    requestAnimationFrame(run);
-    sobs.unobserve(e.target);
   });
-},{threshold:0.4});
-stats.forEach(s=>sobs.observe(s));
 
-/* ── TESTIMONIAL SLIDER ── */
-(function(){
-  const slides=document.querySelectorAll('#qtrack .qslide');
-  const dots=document.querySelectorAll('.qdot');
-  const num=document.getElementById('qnum');
-  const cat=document.getElementById('qsec-cat');
-  if(!slides.length)return;
-  let i=0,timer;
-  function go(n){
-    i=(n+slides.length)%slides.length;
-    slides.forEach((s,j)=>s.classList.toggle('is-active',j===i));
-    dots.forEach((d,j)=>d.classList.toggle('is-active',j===i));
-    if(num)num.textContent=String(i+1).padStart(2,'0');
-    if(cat)cat.innerHTML=slides[i].dataset.cat||'';
+  const burger = document.getElementById('nav-burger');
+  const drawer = document.getElementById('mobile-menu');
+  if(burger && drawer) {
+    burger.addEventListener('click', () => {
+      const open = burger.getAttribute('aria-expanded') === 'true';
+      burger.setAttribute('aria-expanded', !open);
+      drawer.classList.toggle('is-visible');
+    });
   }
-  function tick(){go(i+1)}
-  function restart(){clearInterval(timer);timer=setInterval(tick,6500)}
-  dots.forEach((d,j)=>d.addEventListener('click',()=>{go(j);restart()}));
-  restart();
-})();
 </script>
-<script src="shared.js"></script>
 </body>
 </html>
