@@ -55,6 +55,32 @@
 .h-foot-r{justify-self:end;text-align:right;font-family:var(--fm);font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);line-height:1.8}
 .h-foot-r b{color:var(--ink);font-weight:500}
 
+  /* ── EXACT HERO FOOTER UNDERLINE HIGHLIGHT ── */
+.h-foot-l {
+  position: relative;
+  line-height: 1.6;
+}
+
+.h-foot-l b {
+  font-weight: 500;
+  color: var(--ink);
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.h-foot-l b::after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  bottom: 2px;
+  height: 8px;
+  background: var(--teal);
+  z-index: -1;
+}
+  
 /* ── INDEX BAR ── */
 .idx{padding:5rem var(--pad) 1.25rem;display:grid;grid-template-columns:auto 1fr auto;align-items:end;gap:2rem;border-top:2px solid var(--ink);position:relative}
 .idx::before{content:'';position:absolute;top:-1px;left:0;width:8rem;height:3px;background:var(--teal)}
@@ -314,7 +340,10 @@
   .client-cell,.clip-rev,.fu,.imgrev img,.imgrev::after{transition:none!important;opacity:1!important;transform:none!important;clip-path:none!important}
 }
 </style>
+
+  
 </head>
+  
 <body>
 
 <!-- LOADER -->
