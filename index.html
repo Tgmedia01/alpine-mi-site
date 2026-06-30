@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
+<html lang="en"><head><meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alpine MI — Construction & Fit-Out, London</title>
+<title>Alpine MI — Construction &amp; Fit-Out, London</title>
 <meta name="description" content="Alpine MI — Commercial fit-out and residential construction across London. Programme-led. In-house. On time.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,7 +46,7 @@
 .h-foot{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:2rem;margin:0 var(--pad);padding:1.5rem 0 2rem;border-top:2px solid var(--ink);opacity:0;transition:opacity .9s var(--ease-out) 1.2s}
 .h-foot.in{opacity:1}
 .h-foot-l{font-family:var(--f);font-weight:400;font-size:.95rem;color:var(--ink);max-width:36ch;line-height:1.6}
-.h-foot-l b{font-weight:500;color:var(--ink)}
+.h-foot-l b{font-weight:500;color:var(--ink);text-decoration:underline;text-decoration-color:var(--teal);text-underline-offset:4px;text-decoration-thickness:2px}
 .h-foot-c{font-family:var(--fm);font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);text-align:center;display:flex;flex-direction:column;align-items:center;gap:.6rem}
 .h-foot-c .ln{width:1px;height:36px;background:var(--rule-strong);position:relative;overflow:hidden}
 .h-foot-c .ln::after{content:'';position:absolute;left:0;top:-100%;width:100%;height:100%;background:var(--ink);animation:scrollDown 2.2s var(--ease) infinite}
@@ -55,35 +54,9 @@
 .h-foot-r{justify-self:end;text-align:right;font-family:var(--fm);font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);line-height:1.8}
 .h-foot-r b{color:var(--ink);font-weight:500}
 
-  /* ── EXACT HERO FOOTER UNDERLINE HIGHLIGHT ── */
-.h-foot-l {
-  position: relative;
-  line-height: 1.6;
-}
-
-.h-foot-l b {
-  font-weight: 500;
-  color: var(--ink);
-  position: relative;
-  display: inline-block;
-  white-space: nowrap;
-  z-index: 1;
-}
-
-.h-foot-l b::after {
-  content: '';
-  position: absolute;
-  left: -2px;
-  right: -2px;
-  bottom: 2px;
-  height: 8px;
-  background: var(--teal);
-  z-index: -1;
-}
-  
 /* ── INDEX BAR ── */
 .idx{padding:5rem var(--pad) 1.25rem;display:grid;grid-template-columns:auto 1fr auto;align-items:end;gap:2rem;border-top:2px solid var(--ink);position:relative}
-.idx::before{content:'';position:absolute;top:-1px;left:0;width:8rem;height:3px;background:var(--teal)}
+.idx::before{display:none}
 .idx-no{font-family:var(--fm);font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mid)}
 .idx-no b{color:var(--ink);font-weight:600}
 .idx-title{font-family:var(--fd);font-weight:700;font-size:clamp(2.5rem,8vw,9rem);line-height:.9;letter-spacing:-.05em;text-transform:uppercase}
@@ -242,7 +215,7 @@
 .clients-hd h2 em{font-style:normal;font-weight:400;color:var(--mid)}
 .clients-hd .meta{font-family:var(--fm);font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);text-align:right;line-height:1.8}
 .clients-hd .meta b{color:var(--ink);font-weight:600}
-.client-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.client-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule);margin-left:calc(var(--pad) * -1);margin-right:calc(var(--pad) * -1)}
 .client-cell{height:9rem;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:center;text-align:center;padding:1.5rem;font-family:var(--fd);font-weight:700;font-size:.95rem;letter-spacing:-.01em;text-transform:uppercase;color:var(--ink);position:relative;opacity:0;transform:translateY(20px) scale(.97);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out),background .35s var(--ease),color .35s var(--ease)}
 .client-cell.in{opacity:1;transform:none}
 .client-cell em{font-style:normal;font-weight:400;color:var(--mid);display:block;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;font-family:var(--fm);margin-top:.45rem}
@@ -339,42 +312,13 @@
 @media(prefers-reduced-motion:reduce){
   .client-cell,.clip-rev,.fu,.imgrev img,.imgrev::after{transition:none!important;opacity:1!important;transform:none!important;clip-path:none!important}
 }
-
-  /* ── FULL WIDTH CLIENT LOGOS ── */
-.clients {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  border-top: 2px solid var(--ink); /* This forces the top black line to go full width */
-}
-
-.clients-hd {
-  margin-left: var(--pad);
-  margin-right: var(--pad);
-  border-bottom: none !important; /* Removes the inner heading border constraint */
-  padding-bottom: 0 !important;
-}
-
-.client-grid {
-  border-top: none !important; /* Prevents double lines between header and grid */
-  border-left: none !important;
-  width: 100%;
-}
-
-/* ── REMOVE TEAL VERTICAL ACCENT LINE ── */
-.client-cell::after {
-  display: none !important;
-}
-  
 </style>
-
-  
 </head>
-  
 <body>
 
 <!-- LOADER -->
-<div class="loader" id="loader">
-  <div class="loader-top"><span class="loader-count" id="lcount">00</span><em>—</em></div>
+<div class="loader active out" id="loader">
+  <div class="loader-top"><span class="loader-count" id="lcount">100</span><em>—</em></div>
   <div class="loader-bot">
     <span><strong>Alpine MI</strong> · Construction &amp; Fit-Out</span>
     <span>London &amp; SE · Est. 2022</span>
@@ -382,7 +326,7 @@
 </div>
 
 <!-- NAV -->
-<nav id="nav" class="main-nav">
+<nav id="nav" class="main-nav in">
   <a href="index.html" class="logo-a" aria-label="Alpine MI"><img src="Alpinemi_logo.svg" alt="Alpine MI"></a>
   <div class="nav-r">
     <a href="index.html" class="active"><span class="dot"></span>Home</a>
@@ -426,18 +370,18 @@
 
   <div class="h-main">
     <div class="h-disc" aria-hidden="true"></div>
-    <div class="h-plate" id="hplate">
+    <div class="h-plate in" id="hplate">
       <img src="DSC04334.jpg" alt="Restaurant fit-out — feature joinery">
       <span class="h-plate-cap">N° 04 / 24</span>
     </div>
     <h1 class="hh">
-      <span class="row"><span class="ws" data-d="0">we&nbsp;build</span></span>
-      <span class="row"><span class="ws" data-d="120"><em>spaces</em>&nbsp;</span><span class="ws ampersand" data-d="200">&amp;</span></span>
-      <span class="row"><span class="ws accent" data-d="280">places.</span></span>
+      <span class="row"><span class="ws in" data-d="0">we&nbsp;build</span></span>
+      <span class="row"><span class="ws in" data-d="120"><em>spaces</em>&nbsp;</span><span class="ws ampersand in" data-d="200">&amp;</span></span>
+      <span class="row"><span class="ws accent in" data-d="280">places.</span></span>
     </h1>
   </div>
 
-  <div class="h-foot" id="hfoot">
+  <div class="h-foot in" id="hfoot">
     <p class="h-foot-l">Hospitality, leisure and residential builds across London and the South East. <b>Programme-led. In-house. On time.</b></p>
     <div class="h-foot-c"><span>Scroll</span><span class="ln"></span></div>
     <div class="h-foot-r"><b>0203 617 1144</b><br>sales@alpinemi.co.uk</div>
@@ -448,7 +392,7 @@
 <div class="idx">
   <span class="idx-no"><b>(01)</b> — Index</span>
   <h2 class="idx-title clip-rev">Selected <em>work</em></h2>
-  <span class="idx-meta"><a href="projects.html" style="color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;border-bottom:1px solid var(--ink);padding-bottom:.15rem;transition:color .25s,border-color .25s" onmouseover="this.style.color='var(--teal)';this.style.borderColor='var(--teal)'" onmouseout="this.style.color='var(--ink)';this.style.borderColor='var(--ink)'">View all projects ↗</a><br><b>2023 — 2024</b></span>
+  <span class="idx-meta"><a href="projects.html" style="color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;border-bottom:1px solid var(--ink);padding-bottom:.15rem;transition:color .25s,border-color .25s" onmouseover="this.style.color=&#39;var(--teal)&#39;;this.style.borderColor=&#39;var(--teal)&#39;" onmouseout="this.style.color=&#39;var(--ink)&#39;;this.style.borderColor=&#39;var(--ink)&#39;">View all projects ↗</a><br><b>2023 — 2024</b></span>
 </div>
 
 <!-- HORIZONTAL TRACK -->
@@ -500,7 +444,7 @@
 
 <!-- TWO-UP STUDIO -->
 <section class="two" id="about">
-  <div class="two-l">
+  <div class="two-l in">
     <p class="lead">EXCELLENCE IN EVERY DETAIL</p>
     <p class="body">Alpine MI is a commercial fit-out company delivering thoughtful, high-quality spaces across London and the South East. We work closely with our clients to bring their vision to life, managing every project with care, attention to detail, and a straightfor.</p>
     <div class="meta">
@@ -510,7 +454,7 @@
       <div class="meta-row"><b>Coverage</b><span>London &amp; South East</span></div>
     </div>
   </div>
-  <div class="two-r imgrev">
+  <div class="two-r imgrev in">
     <img src="Revolve bar.jpeg" alt="Alpine MI — restaurant interior">
     <span class="two-r-cap">2024</span>
   </div>
@@ -524,38 +468,38 @@
     <p>One company across the full spectrum — from high-footfall fit-outs to sensitive renovations.</p>
   </div>
   <div class="serv-list">
-    <a class="sli" href="services.html#commercial" style="text-decoration:none;color:inherit"><span class="sli-no"><b>S/01</b></span><h3 class="sli-name">Commercial <em>fit-out</em></h3><span class="sli-arr">↗</span><p class="sli-detail">From a shell to a finished project, Alpine MI brings spaces to life. We manage every stage of the fit-out process, creating high-quality hospitality, leisure, retail and office environments that are built around the needs of our clients.</p></a>
-    <a class="sli" href="services.html#residential" style="text-decoration:none;color:inherit"><span class="sli-no"><b>S/02</b></span><h3 class="sli-name">Residential <em>construction</em></h3><span class="sli-arr">↗</span><p class="sli-detail">We help homeowners create spaces they love living in. From kitchens and bathrooms to living areas and whole-home refurbishments, we manage every stage of the project with care, clear communication and attention to detail.</p></a>
-    <a class="sli" href="services.html#design-build" style="text-decoration:none;color:inherit"><span class="sli-no"><b>S/03</b></span><h3 class="sli-name">Design <em>&amp; build</em></h3><span class="sli-arr">↗</span><p class="sli-detail">From the first idea to the final finish, we work alongside our clients, architects and design teams to bring spaces to life. Our design and build approach keeps the process simple, with clear communication, expert guidance and one team managing every detail.</p></a>
+    <a class="sli in" href="services.html#commercial" style="text-decoration:none;color:inherit"><span class="sli-no"><b>S/01</b></span><h3 class="sli-name">Commercial <em>fit-out</em></h3><span class="sli-arr">↗</span><p class="sli-detail">From a shell to a finished project, Alpine MI brings spaces to life. We manage every stage of the fit-out process, creating high-quality hospitality, leisure, retail and office environments that are built around the needs of our clients.</p></a>
+    <a class="sli in" href="services.html#residential" style="text-decoration:none;color:inherit"><span class="sli-no"><b>S/02</b></span><h3 class="sli-name">Residential <em>construction</em></h3><span class="sli-arr">↗</span><p class="sli-detail">We help homeowners create spaces they love living in. From kitchens and bathrooms to living areas and whole-home refurbishments, we manage every stage of the project with care, clear communication and attention to detail.</p></a>
+    <a class="sli in" href="services.html#design-build" style="text-decoration:none;color:inherit"><span class="sli-no"><b>S/03</b></span><h3 class="sli-name">Design <em>&amp; build</em></h3><span class="sli-arr">↗</span><p class="sli-detail">From the first idea to the final finish, we work alongside our clients, architects and design teams to bring spaces to life. Our design and build approach keeps the process simple, with clear communication, expert guidance and one team managing every detail.</p></a>
   </div>
 </section>
 
 <!-- QUOTE — Rotating client testimonials slider -->
-<section class="qsec" id="qsec">
+<section class="qsec in" id="qsec">
   <div class="qlabel">
     <b>(03) — Testimonials</b>
-    <span id="qsec-cat">3-year partnership<br>Commercial &amp; residential</span>
+    <span id="qsec-cat">Repeat operator<br>Commercial fit-out</span>
   </div>
   <div class="qslider">
     <div class="qtrack" id="qtrack">
-      <div class="qslide is-active" data-cat="3-year partnership<br>Commercial &amp; residential">
+      <div class="qslide" data-cat="3-year partnership&lt;br&gt;Commercial &amp; residential">
         <blockquote class="qbody">Alpine have worked with us for over three years, providing an exceptional level of construction services at a <em>fair price.</em> We have always been pleased with the services provided and cannot recommend them <span class="mark">highly enough.</span></blockquote>
         <div class="qattr"><span>Damian Harte · Director</span><span><b>P J Harte Ltd</b></span></div>
       </div>
-      <div class="qslide" data-cat="Residential refurb<br>Primrose Hill">
+      <div class="qslide" data-cat="Residential refurb&lt;br&gt;Primrose Hill">
         <blockquote class="qbody">I know we've been particular about the details during the project, but we wanted <em>perfection!</em> Thank you for your patience and dedication throughout, we are so happy with the <span class="mark">results.</span></blockquote>
         <div class="qattr"><span>Seth Curtis</span><span><b>Primrose Hill · Residential</b></span></div>
       </div>
-      <div class="qslide" data-cat="Repeat operator<br>Commercial fit-out">
+      <div class="qslide is-active" data-cat="Repeat operator&lt;br&gt;Commercial fit-out">
         <blockquote class="qbody">We've worked with Alpine on a number of occasions. They're a pleasure to work with and they always <em>deliver what they promise.</em> This is the biggest compliment I could give any <span class="mark">construction company.</span></blockquote>
         <div class="qattr"><span>Phil Waggett · Executive Director</span><span><b>WFC</b></span></div>
       </div>
     </div>
     <div class="qctrl">
-      <button class="qdot is-active" data-i="0" aria-label="Testimonial 1"></button>
+      <button class="qdot" data-i="0" aria-label="Testimonial 1"></button>
       <button class="qdot" data-i="1" aria-label="Testimonial 2"></button>
-      <button class="qdot" data-i="2" aria-label="Testimonial 3"></button>
-      <span class="qct"><b id="qnum">01</b> / 03</span>
+      <button class="qdot is-active" data-i="2" aria-label="Testimonial 3"></button>
+      <span class="qct"><b id="qnum">03</b> / 03</span>
     </div>
   </div>
 </section>
@@ -568,12 +512,12 @@
     <span class="meta"><b>6 clients</b><br>Selected partners</span>
   </div>
   <div class="client-grid client-grid--6">
-    <div class="client-cell"><img src="KoD.jpg" alt="KÖD"></div>
-    <div class="client-cell"><img src="image_f22be4.png" alt="RHC Hospitality Collection"></div>
-    <div class="client-cell"><img src="sky garden logo.jpg" alt="Sky Garden London"></div>
-    <div class="client-cell"><img src="VERTUS.jpg" alt="Vertus"></div>
-    <div class="client-cell"><img src="PORTE_NOIR.jpg" alt="Porte Noire"></div>
-    <div class="client-cell"><img src="solo60.jpg" alt="Solo Sixty"></div>
+    <div class="client-cell in"><img src="KoD.jpg" alt="KÖD"></div>
+    <div class="client-cell in"><img src="image_f22be4.png" alt="RHC Hospitality Collection"></div>
+    <div class="client-cell in"><img src="sky garden logo.jpg" alt="Sky Garden London"></div>
+    <div class="client-cell in"><img src="VERTUS.jpg" alt="Vertus"></div>
+    <div class="client-cell in"><img src="PORTE_NOIR.jpg" alt="Porte Noire"></div>
+    <div class="client-cell in"><img src="solo60.jpg" alt="Solo Sixty"></div>
   </div>
 </section>
 
@@ -587,11 +531,11 @@
       <a href="tel:02036171144">0203 617 1144</a>
       <div class="colo-social">
         <a href="https://www.instagram.com/alpine.mi" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
           Instagram
         </a>
-        <a href="https://www.facebook.com/profile.php?id=61591220498993&ref=1" target="_blank" rel="noopener" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        <a href="https://www.facebook.com/profile.php?id=61591220498993&amp;ref=1" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg>
           Facebook
         </a>
       </div>
@@ -627,7 +571,7 @@
   </div>
   <div class="colo-foot">
     <span>&copy; <script>document.write(new Date().getFullYear());</script> Alpine MI &middot; Co. No. 13895571 &middot; England &amp; Wales</span>
-    <span><a href="#">Privacy</a> &nbsp;&middot;&nbsp; <a href="#">Terms</a> &nbsp;&middot;&nbsp; by <a href="https://tgmedia.uk" target="_blank" rel="noopener">tgmedia.uk</a></span>
+    <span><a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Terms</a> &nbsp;·&nbsp; by <a href="https://tgmedia.uk/" target="_blank" rel="noopener">tgmedia.uk</a></span>
   </div>
 </section>
 
@@ -765,5 +709,6 @@ stats.forEach(s=>sobs.observe(s));
 })();
 </script>
 <script src="shared.js"></script>
-</body>
-</html>
+
+
+</body></html>
