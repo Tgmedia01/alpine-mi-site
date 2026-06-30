@@ -339,6 +339,32 @@
 @media(prefers-reduced-motion:reduce){
   .client-cell,.clip-rev,.fu,.imgrev img,.imgrev::after{transition:none!important;opacity:1!important;transform:none!important;clip-path:none!important}
 }
+
+  /* ── FULL WIDTH CLIENT LOGOS ── */
+.clients {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  border-top: 2px solid var(--ink); /* This forces the top black line to go full width */
+}
+
+.clients-hd {
+  margin-left: var(--pad);
+  margin-right: var(--pad);
+  border-bottom: none !important; /* Removes the inner heading border constraint */
+  padding-bottom: 0 !important;
+}
+
+.client-grid {
+  border-top: none !important; /* Prevents double lines between header and grid */
+  border-left: none !important;
+  width: 100%;
+}
+
+/* ── REMOVE TEAL VERTICAL ACCENT LINE ── */
+.client-cell::after {
+  display: none !important;
+}
+  
 </style>
 
   
