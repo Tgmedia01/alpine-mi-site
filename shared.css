@@ -105,7 +105,7 @@ nav.main-nav.in{transform:translateY(0)}
 .colo{padding:6rem var(--pad) 3rem;background:var(--ink);color:var(--paper);position:relative}
 .colo h2{font-family:var(--fd);font-weight:700;font-size:clamp(3.5rem,13vw,15rem);line-height:.85;letter-spacing:-.06em;color:var(--paper);margin-bottom:3rem;text-transform:uppercase}
 .colo h2 em{font-style:normal;font-weight:400;color:rgba(255,255,255,.4)}
-.colo h2 u{text-decoration:none;color:inherit;box-shadow:inset 0 -.12em 0 var(--teal)}
+.colo h2 u{text-decoration:none;box-shadow:none;color:var(--teal)}
 .colo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;padding-top:2.5rem;border-top:1px solid rgba(244,241,234,.18)}
 .colo-col h4{font-family:var(--fm);font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(255,255,255,.18)}
 .colo-col a,.colo-col span{display:block;font-family:var(--f);font-weight:500;font-size:.98rem;color:var(--paper);text-decoration:none;line-height:1.6;transition:color .2s}
@@ -125,7 +125,7 @@ nav.main-nav.in{transform:translateY(0)}
 .acred{margin-top:4rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.18)}
 .acred-lbl{font-family:var(--fm);font-size:.62rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1.5rem;display:flex;align-items:center;gap:.7rem}
 .acred-lbl::before{content:'';width:8px;height:8px;background:var(--teal);border-radius:50%}
-.acred-row{display:flex;flex-wrap:nowrap;justify-content:space-between;align-items:center;gap:1.5rem}
+.acred-row{display:flex;flex-wrap:nowrap;justify-content:flex-start;align-items:center;gap:3rem}
 
 /* base acred item — greyscale + dim, smoothly transitions to full colour */
 .acred-item{display:flex;align-items:center;justify-content:center;height:54px;min-width:90px;transition:filter .35s var(--ease),opacity .35s var(--ease),transform .35s var(--ease);position:relative;filter:grayscale(1);opacity:.5}
@@ -141,6 +141,9 @@ nav.main-nav.in{transform:translateY(0)}
 /* placeholder fallback (kept for any pages still using span) */
 .acred-item .placeholder{font-family:var(--fd);font-weight:700;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;border:1.5px solid rgba(255,255,255,.55);padding:.5rem .9rem;line-height:1;text-align:center;color:rgba(255,255,255,.55);transition:border-color .35s,color .35s,background .35s}
 .acred-item:hover .placeholder{color:var(--ink);background:var(--teal);border-color:var(--teal)}
+
+/* ── FULL-WIDTH DIVIDER UTILITY ── */
+.divider-full{width:100vw;margin-left:calc(var(--pad) * -1);border-top:2px solid var(--ink);height:0;display:block}
 
 /* ── REVEALS ── */
 .rev{opacity:0;transform:translateY(14px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
