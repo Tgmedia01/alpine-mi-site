@@ -19,7 +19,7 @@
 }
 .phero-h1, .intro-l h2, .princ-hd h3, .principle h4,
 .timeline-row .yr, .timeline-row .ttl, .ctas h2, .colo h2,
-.shead-title, .stat-fig{
+.shead-title, .stat-fig, .facts-hd h2{
   font-family:var(--fd);
   font-weight:var(--display-weight);
   letter-spacing:var(--display-tracking);
@@ -28,7 +28,7 @@
 }
 .phero-h1 em, .intro-l h2 em, .princ-hd h3 em, .principle h4 em,
 .timeline-row .yr em, .timeline-row .ttl em, .ctas h2 em, .colo h2 em,
-.shead-title em{font-style:var(--display-italic)}
+.shead-title em, .facts-hd h2 em{font-style:var(--display-italic)}
 body[data-display="serif"] .phero-h1,
 body[data-display="serif"] .intro-l h2,
 body[data-display="serif"] .ctas h2,
@@ -66,7 +66,7 @@ body[data-surface="hatch"]::before{
   background-image:repeating-linear-gradient(45deg,var(--ink) 0,var(--ink) 1px,transparent 1px,transparent 7px);
   mix-blend-mode:multiply
 }
-nav.main-nav, .loader, .phero, .intro, .princ, .tl, .mwrap, .ctas, .colo, .twk-panel{position:relative;z-index:2}
+.loader, .phero, .intro, .princ, .tl, .mwrap, .ctas, .colo, .twk-panel{position:relative;z-index:2}
 nav.main-nav{z-index:200}
 .loader{z-index:1000}
 
@@ -99,7 +99,16 @@ nav.main-nav{z-index:200}
 .principle::after{content:'';position:absolute;left:0;top:0;width:18px;height:4px;background:var(--teal)}
 
 /* ── FACTS ── */
-.tl{padding:7rem var(--pad) 6rem;border-bottom:1px solid var(--rule);background:var(--paper-2)}
+.tl{padding:9rem var(--pad) 6rem;border-bottom:1px solid var(--rule);background:var(--paper-2)}
+.facts-hd{display:grid;grid-template-columns:auto 1fr auto;align-items:end;gap:2rem;padding-bottom:1.5rem;position:relative}
+.facts-hd::before{content:'';position:absolute;top:-3.5rem;left:0;width:80px;height:4px;background:var(--teal)}
+.facts-hd .num{font-family:var(--fm);font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mid)}
+.facts-hd .num b{color:var(--ink);font-weight:600}
+.facts-hd h2{font-size:clamp(2.5rem,7vw,7rem);line-height:.9;letter-spacing:-.05em;text-transform:uppercase;color:var(--ink)}
+.facts-hd h2 em{font-style:normal;color:var(--teal);font-weight:700}
+.facts-hd .meta{font-family:var(--fm);font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);text-align:right;line-height:1.8}
+.facts-hd .meta b{color:var(--ink);font-weight:600}
+
 .facts-grid{margin-top:4rem;display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--ink)}
 .fact{padding:3.5rem 2rem 3.5rem 0;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:0;position:relative;opacity:0;transform:translateY(22px);transition:opacity .75s var(--ease-out),transform .75s var(--ease-out);min-height:22rem}
 .fact:first-child{padding-left:0}
@@ -129,6 +138,9 @@ nav.main-nav{z-index:200}
   .princ-list{grid-template-columns:1fr;border-left:none}
   .principle{min-height:auto;border-right:none}
   .tl{padding:4rem 1.25rem 3rem}
+  .facts-hd{grid-template-columns:1fr;gap:1rem}
+  .facts-hd .meta{text-align:left}
+  .facts-hd::before{top:-2rem}
   .facts-grid{grid-template-columns:1fr 1fr;margin-top:2.5rem}
   .fact{border-right:none;border-bottom:1px solid var(--rule);padding:2.5rem 0;min-height:auto}
   .fact:not(:first-child){padding-left:0}
@@ -244,10 +256,10 @@ nav.main-nav{z-index:200}
 
 <!-- THE FACTS -->
 <section class="tl" id="facts">
-  <div class="shead" style="background:var(--paper-2);border-top:none">
-    <span class="shead-no"><b>(02)</b> — By the numbers</span>
-    <h2 class="shead-title">The <em>facts</em></h2>
-    <span class="shead-meta">2022 — present<br><b>Selected metrics</b></span>
+  <div class="facts-hd">
+    <span class="num"><b>(02)</b> — By the numbers</span>
+    <h2>The <em>facts</em></h2>
+    <span class="meta">2022 — present<br><b>Selected metrics</b></span>
   </div>
   <div class="facts-grid" id="facts-grid">
     <div class="fact">
@@ -257,7 +269,7 @@ nav.main-nav{z-index:200}
     </div>
     <div class="fact">
       <div class="fact-val">£2<em>m</em></div>
-      <p class="fact-lbl">Project capacity backed by pi / el / pl insurance up to 25m</p>
+      <p class="fact-lbl">project capacity backed by pi / el / pl insurance up to 25m</p>
       <span class="fact-sub">Financial backing</span>
     </div>
     <div class="fact">
@@ -352,8 +364,6 @@ nav.main-nav{z-index:200}
   }, { threshold: 0.18 });
   obs.observe(grid);
 })();
-
-  <script src="shared.js"></script>
-    <script>/* facts stagger */</script>
+</script>
 </body>
 </html>
