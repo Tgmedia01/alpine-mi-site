@@ -23,7 +23,7 @@
   padding:3.5rem var(--pad) 6rem;
   display:grid;
   grid-template-columns:repeat(6,1fr);
-  grid-auto-rows:22rem;
+  grid-auto-rows:26rem;
   grid-auto-flow:dense;
   gap:1rem
 }
@@ -31,7 +31,7 @@
   display:flex;flex-direction:column;gap:0;
   text-decoration:none;color:var(--ink);
   transition:opacity .35s,filter .35s;
-  /* default: 2 col × 1 row */
+  /* default: 2 col × 1 row — uniform row height keeps dense packing gap-free */
   grid-column:span 2;grid-row:span 1
 }
 .pgrid.filtered .pcard:not(.match){opacity:.18;filter:grayscale(1)}
@@ -76,13 +76,20 @@
   color:var(--mid);text-align:right;line-height:1.5;flex-shrink:0
 }
 .pcard:hover .name em{color:var(--teal)}
-/* ── masonry size variants ── */
-/* hero: 4 col × 2 rows — dominant landscape */
-.pcard.p-hero{grid-column:span 4;grid-row:span 2}
-/* feature: 3 col × 2 rows */
-.pcard.p-feature{grid-column:span 3;grid-row:span 2}
-/* tall: 2 col × 2 rows — portrait emphasis */
-.pcard.p-tall{grid-column:span 2;grid-row:span 2}
+/* ── masonry size variants ──
+   All variants are row-span:1 — width varies, height is uniform.
+   This is what makes grid-auto-flow:dense gap-free: dense packing
+   only produces mid-grid holes when BOTH column-span and row-span
+   vary together (2D bin-packing conflict). With every card exactly
+   one row tall, dense placement behaves like a wrapping flex row
+   and can never leave an unfillable hole — only a normal trailing
+   gap at the very end of the grid, same as unjustified text. */
+/* hero: 4 col × 1 row — dominant, wide */
+.pcard.p-hero{grid-column:span 4;grid-row:span 1}
+/* feature: 3 col × 1 row */
+.pcard.p-feature{grid-column:span 3;grid-row:span 1}
+/* tall: 2 col × 1 row */
+.pcard.p-tall{grid-column:span 2;grid-row:span 1}
 /* standard: 2 col × 1 row — default */
 .pcard.p-std{grid-column:span 2;grid-row:span 1}
 /* wide: 4 col × 1 row — full-width shallow */
