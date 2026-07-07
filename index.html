@@ -223,7 +223,7 @@
 
 /* ── ACCREDITATION LOGO VISIBILITY BOOST ── */
 .acred-item img {
-  filter: grayscale(0) brightness(1.4) !important;
+  filter: grayscale(0) brightness(2.1) !important;
   opacity: 1 !important;
 }
 
@@ -681,7 +681,6 @@ stats.forEach(s=>sobs.observe(s));
     if(cat)cat.innerHTML=slides[i].dataset.cat||'';
   }
   function tick(){go(i+1)}
-  /* Slowed down slider timing to 12000ms (12 seconds) per slide for readability */
   function restart(){clearInterval(timer);timer=setInterval(tick,12000)}
   dots.forEach((d,j)=>d.addEventListener('click',()=>{go(j);restart()}));
   restart();
@@ -691,5 +690,3 @@ stats.forEach(s=>sobs.observe(s));
 
 
 </body></html>
-
-```
