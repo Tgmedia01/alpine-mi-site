@@ -24,10 +24,20 @@
   else document.addEventListener('DOMContentLoaded', reveal);
 
   // NAV HIDE ON SCROLL — 80px hysteresis prevents inertial-scroll flicker
+  // Also applies .is-scrolled the instant scrollY > 5 for background fill
   let ly=0, hiddenAt=0;
   window.addEventListener('scroll',()=>{
     if(!nav) return;
     const y = window.scrollY;
+
+    // .is-scrolled: instant on/off at 5px threshold
+    if(y > 5){
+      nav.classList.add('is-scrolled');
+    } else {
+      nav.classList.remove('is-scrolled');
+    }
+
+    // hide/show nav on scroll direction (existing hysteresis logic)
     if(y > 140 && y > ly){
       nav.style.transform = 'translateY(-110%)';
       hiddenAt = y;
