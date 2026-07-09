@@ -295,3 +295,15 @@ nav.main-nav.in{transform:translateY(0)}
 
 /* ── PROJ-LINK — clickable wrapper for horizontal track cards ── */
 a.proj-link{text-decoration:none;color:inherit;display:block}
+
+.proj {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  cursor: pointer;
+  transition: opacity 0.25s ease;
+}
+
+.proj:hover {
+  opacity: 0.85;
+}
