@@ -301,17 +301,25 @@ nav.main-nav.is-scrolled .logo-a img{filter:none}
   .cs-next .meta{grid-template-columns:1fr 1fr;gap:.85rem 1rem}
   .cs-next .back{position:static;display:inline-flex;margin-bottom:2rem}
 }
-/* ── ACRED BRIGHTNESS BOOST ── */
+/* ── ACRED BRIGHTNESS BOOST (FORCED) ── */
+
+/* Standard logos */
 .acred-row .acred-item img {
-  filter: brightness(120%) contrast(110%);
-  transition: filter 0.3s ease;
+    filter: brightness(120%) contrast(110%) !important;
+    transition: filter 0.3s ease;
 }
+
+/* CHAS specific logo - Force override */
 .acred-row .acred-item img[alt="CHAS accreditation"] {
-  filter: brightness(300%) saturate(0) contrast(110%);
+    filter: brightness(300%) saturate(0) contrast(110%) !important;
 }
+
+/* Hover effects */
 .acred-row .acred-item:hover img {
-  filter: brightness(140%) contrast(115%);
+    filter: brightness(140%) contrast(115%) !important;
 }
+
 .acred-row .acred-item:hover img[alt="CHAS accreditation"] {
-  filter: none;
+    filter: none !important;
+}
 }
