@@ -139,3 +139,42 @@
   document.querySelectorAll('.stat').forEach(s=>sobs.observe(s));
 
 })();
+
+// ── HORIZONTAL PROJECT TRACK DRAG-TO-SCROLL ──
+  const track = document.getElementById('htrack');
+  if (track) {
+    let isDown = false, startX = 0, scrollX = 0, didDrag = false;
+    const wrap = track.parentElement;
+
+    track.addEventListener('pointerdown', e => {
+      isDown = true;
+      didDrag = false;
+      startX = e.clientX;
+      scrollX = wrap.scrollLeft;
+      track.setPointerCapture(e.pointerId);
+      track.style.cursor = 'grabbing';
+    });
+
+    track.addEventListener('pointermove', e => {
+      if (!isDown) return;
+      const dx = e.clientX - startX;
+      if (Math.abs(dx) > 4) didDrag = true;
+      wrap.scrollLeft = scrollX - dx;
+    });
+
+    track.addEventListener('pointerup', e => {
+      if (track.hasPointerCapture(e.pointerId)) track.releasePointerCapture(e.pointerId);
+      isDown = false;
+      track.style.cursor = 'grab';
+    });
+
+    track.addEventListener('click', e => {
+      if (didDrag) {
+        e.preventDefault();
+        e.stopPropagation();
+        didDrag = false;
+      }
+    }, { capture: true });
+
+    track.style.cursor = 'grab';
+  }
