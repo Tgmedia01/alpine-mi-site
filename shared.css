@@ -33,12 +33,8 @@ a{color:inherit}
 .loader-bot strong{color:var(--paper);font-weight:500}
 
 /* ── NAV ── */
-nav.main-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;gap:2rem;padding:1.5rem var(--pad);transform:translateY(-110%);transition:transform .9s var(--ease-out) .2s,background-color .2s ease,color .2s ease,mix-blend-mode .2s ease;color:var(--paper);mix-blend-mode:difference}
+nav.main-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;gap:2rem;padding:1.5rem var(--pad);transform:translateY(-110%);transition:transform .9s var(--ease-out) .2s;color:var(--paper);mix-blend-mode:difference}
 nav.main-nav.in{transform:translateY(0)}
-nav.main-nav.is-scrolled{background-color:var(--paper);border-bottom:1px solid var(--rule);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);mix-blend-mode:normal;color:var(--ink)}
-nav.main-nav.is-scrolled .nav-r a{color:var(--ink)}
-nav.main-nav.is-scrolled .nav-burger span{background:var(--ink)}
-nav.main-nav.is-scrolled .logo-a img{filter:none}
 .logo-a{display:flex;align-items:center;text-decoration:none}
 .logo-a img{height:42px;width:auto;filter:invert(1) brightness(2)}
 .nav-r{display:flex;gap:2.5rem;align-items:center}
@@ -141,11 +137,6 @@ nav.main-nav.is-scrolled .logo-a img{filter:none}
 /* CHAS-specific brightness boost so it reads on dark bg at rest */
 .acred-item img[alt="CHAS accreditation"]{filter:brightness(3) saturate(0)}
 .acred-item:hover img[alt="CHAS accreditation"]{filter:none}
-/* per-img greyscale transition */
-.acred-row .acred-item img{filter:grayscale(100%);transition:filter .3s ease}
-.acred-row .acred-item:hover img{filter:grayscale(0%)}
-.acred-row .acred-item img[alt="CHAS accreditation"]{filter:brightness(3) saturate(0)}
-.acred-row .acred-item:hover img[alt="CHAS accreditation"]{filter:none}
 
 /* placeholder fallback (kept for any pages still using span) */
 .acred-item .placeholder{font-family:var(--fd);font-weight:700;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;border:1.5px solid rgba(255,255,255,.55);padding:.5rem .9rem;line-height:1;text-align:center;color:rgba(255,255,255,.55);transition:border-color .35s,color .35s,background .35s}
@@ -301,31 +292,6 @@ nav.main-nav.is-scrolled .logo-a img{filter:none}
   .cs-next .meta{grid-template-columns:1fr 1fr;gap:.85rem 1rem}
   .cs-next .back{position:static;display:inline-flex;margin-bottom:2rem}
 }
-/* ── ACRED BRIGHTNESS BOOST (FORCED) ── */
 
-/* Standard logos */
-.acred-row .acred-item img {
-    filter: brightness(120%) contrast(110%) !important;
-    transition: filter 0.3s ease;
-}
-
-/* CHAS specific logo - Force override */
-.acred-row .acred-item img[alt="CHAS accreditation"] {
-    filter: brightness(300%) saturate(0) contrast(150%) !important;
-}
-
-/* Hover effects */
-.acred-row .acred-item:hover img {
-    filter: brightness(140%) contrast(115%) !important;
-}
-
-.acred-row .acred-item:hover img[alt="CHAS accreditation"] {
-    filter: none !important;
-}
-/* ── PROJ-LINK — replaces inline style="text-decoration:none;color:inherit" on .proj <a> wrappers ── */
-a.proj-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-}
+/* ── PROJ-LINK — clickable wrapper for horizontal track cards ── */
+a.proj-link{text-decoration:none;color:inherit;display:block}
