@@ -175,6 +175,4 @@
         didDrag = false;
       }
     }, { capture: true });
-
-    track.style.cursor = 'grab';
   }
