@@ -33,12 +33,16 @@ a{color:inherit}
 .loader-bot strong{color:var(--paper);font-weight:500}
 
 /* ── NAV ── */
-nav.main-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;gap:2rem;padding:1.5rem var(--pad);transform:translateY(-110%);transition:transform .9s var(--ease-out) .2s;color:var(--paper);mix-blend-mode:difference}
+nav.main-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;gap:2rem;padding:1.5rem var(--pad);transform:translateY(-110%);transition:transform .9s var(--ease-out) .2s,background .3s var(--ease),border-color .3s var(--ease);color:var(--paper);background:transparent;border-bottom:1px solid transparent}
 nav.main-nav.in{transform:translateY(0)}
+nav.main-nav.is-scrolled{background:#ffffff;border-bottom-color:rgba(0,0,0,.1);color:var(--ink)}
 .logo-a{display:flex;align-items:center;text-decoration:none}
-.logo-a img{height:42px;width:auto;filter:invert(1) brightness(2)}
+.logo-a img{height:42px;width:auto;filter:invert(1) brightness(2);transition:filter .3s var(--ease)}
+nav.main-nav.is-scrolled .logo-a img{filter:none}
 .nav-r{display:flex;gap:2.5rem;align-items:center}
-.nav-r a{font-family:var(--fm);font-size:.7rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);text-decoration:none;position:relative;padding:.3rem 0}
+.nav-r a{font-family:var(--fm);font-size:.7rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);text-decoration:none;position:relative;padding:.3rem 0;transition:color .3s var(--ease)}
+nav.main-nav.is-scrolled .nav-r a{color:var(--ink)}
+nav.main-nav.is-scrolled .nav-burger span{background:var(--ink)}
 .nav-r a .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--teal);margin-right:.55rem;vertical-align:middle;opacity:0;transform:scale(0);transition:opacity .3s,transform .3s var(--ease)}
 .nav-r a:hover .dot,.nav-r a.active .dot{opacity:1;transform:scale(1)}
 .nav-r a.active{font-weight:600}
