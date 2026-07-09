@@ -24,21 +24,26 @@
   else document.addEventListener('DOMContentLoaded', reveal);
 
   // NAV SCROLL BEHAVIOURS
-  // .is-scrolled  — instant toggle at 5px; kills blend-mode, fills background
-  // hide/show     — 80px hysteresis, unchanged
+  // .is-scrolled — solid white bg once user leaves hero top
+  // hide/show    — hide halfway into hero, show only near top on scroll-up
   let ly=0, hiddenAt=0;
   window.addEventListener('scroll',()=>{
     if(!nav) return;
     const y = window.scrollY;
 
-    // ── background fill: instant on/off at 5px ──
+    // ── solid background: kick in after 5px scroll ──
     nav.classList.toggle('is-scrolled', y > 5);
 
-    // ── hide on scroll-down / show on scroll-up ──
-    if(y > 140 && y > ly){
+    // ── hide on scroll-down past 50% of viewport height ──
+    const hideThreshold = Math.round(window.innerHeight * 0.5);
+    if(y > hideThreshold && y > ly){
       nav.style.transform = 'translateY(-110%)';
       hiddenAt = y;
-    } else if(y < hiddenAt - 80){
+    } else if(y < 80){
+      // ── only fully show again near the very top ──
+      nav.style.transform = '';
+      hiddenAt = 0;
+    } else if(hiddenAt > 0 && y < hiddenAt - 80){
       nav.style.transform = '';
       hiddenAt = 0;
     }
@@ -141,49 +146,55 @@
 })();
 
 // ── HORIZONTAL PROJECT TRACK DRAG-TO-SCROLL ──
+(function(){
   const track = document.getElementById('htrack');
-  if (track) {
-    let isDown = false, startX = 0, scrollX = 0, didDrag = false;
-    const wrap = track.parentElement;
+  if (!track) return;
 
-    track.addEventListener('pointerdown', e => {
-      isDown = true;
-      didDrag = false;
-      startX = e.clientX;
-      scrollX = wrap.scrollLeft;
-      track.setPointerCapture(e.pointerId);
-      track.style.cursor = 'grabbing';
-    });
+  const wrap = track.parentElement;
+  let isDown = false, startX = 0, scrollX = 0, didDrag = false;
 
-    track.addEventListener('pointermove', e => {
-      if (!isDown) return;
-      const dx = e.clientX - startX;
-      if (Math.abs(dx) > 4) didDrag = true;
-      wrap.scrollLeft = scrollX - dx;
-    });
+  // Enable horizontal scroll on the wrapper
+  wrap.style.overflowX = 'auto';
+  wrap.style.scrollbarWidth = 'none'; // Firefox
+  const _sh = document.createElement('style');
+  _sh.textContent = '.htrack-outer::-webkit-scrollbar{display:none}';
+  document.head.appendChild(_sh);
+  track.style.cursor = 'grab';
 
-    track.addEventListener('pointerup', e => {
-      if (track.hasPointerCapture(e.pointerId)) track.releasePointerCapture(e.pointerId);
-      isDown = false;
-      track.style.cursor = 'grab';
-    });
+  track.addEventListener('pointerdown', e => {
+    isDown = true;
+    didDrag = false;
+    startX = e.clientX;
+    scrollX = wrap.scrollLeft;
+    track.setPointerCapture(e.pointerId);
+    track.style.cursor = 'grabbing';
+  });
 
-    track.addEventListener('click', e => {
-      if (didDrag) {
-        e.preventDefault();
-        e.stopPropagation();
-        didDrag = false;
-      }
-    }, { capture: true });
+  track.addEventListener('pointermove', e => {
+    if (!isDown) return;
+    const dx = e.clientX - startX;
+    if (Math.abs(dx) > 4) didDrag = true;
+    wrap.scrollLeft = scrollX - dx;
+  });
 
-    wrap.style.overflowX = 'auto';
-    wrap.style.scrollbarWidth = 'none';
-    const _styleHide = document.createElement('style');
-    _styleHide.textContent = '.htrack-outer::-webkit-scrollbar{display:none}';
-    document.head.appendChild(_styleHide);
+  track.addEventListener('pointerup', e => {
+    // Release pointer capture so child <a> elements receive click events
+    if (track.hasPointerCapture(e.pointerId)) track.releasePointerCapture(e.pointerId);
+    isDown = false;
     track.style.cursor = 'grab';
+  });
 
-    wrap.addEventListener('wheel', e => {
-      if (e.shiftKey) { wrap.scrollLeft += e.deltaY; e.preventDefault(); }
-    }, { passive: false });
-  }
+  // Suppress click only when the gesture was a real drag
+  track.addEventListener('click', e => {
+    if (didDrag) {
+      e.preventDefault();
+      e.stopPropagation();
+      didDrag = false;
+    }
+  }, { capture: true });
+
+  // Shift+wheel → horizontal scroll on desktop
+  wrap.addEventListener('wheel', e => {
+    if (e.shiftKey) { wrap.scrollLeft += e.deltaY; e.preventDefault(); }
+  }, { passive: false });
+})();
