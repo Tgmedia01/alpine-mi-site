@@ -311,7 +311,7 @@ nav.main-nav.is-scrolled .logo-a img{filter:none}
 
 /* CHAS specific logo - Force override */
 .acred-row .acred-item img[alt="CHAS accreditation"] {
-    filter: brightness(300%) saturate(0) contrast(110%) !important;
+    filter: brightness(300%) saturate(0) contrast(150%) !important;
 }
 
 /* Hover effects */
@@ -321,5 +321,11 @@ nav.main-nav.is-scrolled .logo-a img{filter:none}
 
 .acred-row .acred-item:hover img[alt="CHAS accreditation"] {
     filter: none !important;
+}
+/* ── PROJ-LINK — replaces inline style="text-decoration:none;color:inherit" on .proj <a> wrappers ── */
+a.proj-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 }
