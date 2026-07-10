@@ -72,6 +72,17 @@
   </div>
 </section>
 
+ /* ── ACCREDITATION LOGO VISIBILITY BOOST ── */
+.acred-item img {
+  filter: grayscale(0) brightness(2.1);
+  opacity: 1 !important;
+  transition: filter 0.3s ease;
+}
+
+.acred-item:hover img[src*="Chas_logo"] {
+  filter: none;
+}
+
 <!-- BRIEF + SPEC -->
 <section class="cs-brief">
   <div class="cs-brief-l">
