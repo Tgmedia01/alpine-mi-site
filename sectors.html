@@ -83,6 +83,72 @@
   .cross-r{grid-template-columns:1fr}
   .ctas{grid-template-columns:1fr;padding:4rem 1.25rem}
 }
+
+
+/* ── RESPONSIVE HARDENING: 14-inch laptops + browser zoom ── */
+html,body{max-width:100%;overflow-x:clip}
+.sector>*{min-width:0}
+.sector-name h2,.sector-body p{overflow-wrap:anywhere}
+.sector-img img{display:block}
+
+/* Typical 14-inch MacBook CSS widths (1280–1512px, depending on scaling). */
+@media (max-width:1512px) and (min-width:1101px){
+  .phero{
+    height:auto!important;
+    min-height:0!important;
+    overflow:visible!important;
+    padding-top:clamp(2.5rem,5vw,5rem)!important;
+    padding-bottom:clamp(3rem,6vw,6rem)!important;
+  }
+  .phero-h1{font-size:clamp(4.5rem,10vw,8.75rem)!important;line-height:.86!important}
+  .phero-h1 .row{overflow:visible!important}
+  .phero-h1 .ws{opacity:1;transform:none}
+
+  .sector{
+    grid-template-columns:56px minmax(285px,1.18fr) minmax(220px,270px) minmax(260px,.92fr) 34px;
+    gap:clamp(.85rem,1.45vw,1.4rem);
+  }
+  .sector-no{padding-left:1rem}
+  .sector-name h2{font-size:clamp(2.65rem,4.15vw,4.2rem)}
+  .sector-img{min-height:15.5rem}
+  .sector-body{padding-right:.4rem}
+  .sector-body p{font-size:clamp(.82rem,.82vw,.9rem);line-height:1.62}
+  .sector-arr{padding-right:1rem}
+}
+
+/* Smaller laptop windows and 125% browser zoom. */
+@media (max-width:1180px) and (min-width:861px){
+  .sector{
+    grid-template-columns:52px minmax(235px,1.08fr) minmax(205px,235px) minmax(235px,.92fr) 30px;
+    gap:.9rem;
+  }
+  .sector-name h2{font-size:clamp(2.25rem,3.85vw,3.35rem)}
+  .sector-no{padding-left:.75rem}
+  .sector-body p{font-size:.8rem}
+  .sector-tags{gap:.3rem}
+  .sector-tags span{font-size:.54rem;padding:.26rem .42rem}
+}
+
+/* Prevent the tablet layout from arriving too late on narrow browser windows. */
+@media (max-width:980px){
+  .sector{grid-template-columns:1fr!important;gap:.4rem;padding:2.5rem 1.25rem 3rem}
+  .sector-no{padding:0;margin-bottom:.5rem}
+  .sector-name{padding:0;margin-bottom:1.5rem}
+  .sector:hover .sector-name h2{transform:none}
+  .sector-img{min-height:15rem;margin:0 0 1.5rem}
+  .sector-body{padding:0}
+  .sector-arr{display:none}
+  .cross{grid-template-columns:1fr;padding:4rem 1.25rem;gap:2rem}
+  .ctas{grid-template-columns:1fr;padding:4rem 1.25rem}
+}
+
+@media (max-width:560px){
+  .sector{padding-inline:1rem}
+  .sector-name h2{font-size:clamp(2.25rem,12vw,3.35rem)}
+  .sector-img{min-height:12rem}
+  .cross-r{grid-template-columns:1fr}
+}
+
 </style>
 </head>
 <body>
