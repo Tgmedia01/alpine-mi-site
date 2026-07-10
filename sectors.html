@@ -54,6 +54,17 @@
 .cmini .num b{color:var(--ink);font-weight:600}
 .cmini .num em{font-style:normal;color:var(--mid);font-weight:400}
 
+/* ── ACCREDITATION LOGO VISIBILITY BOOST ── */
+.acred-item img {
+  filter: grayscale(0) brightness(2.1);
+  opacity: 1 !important;
+  transition: filter 0.3s ease;
+}
+
+.acred-item:hover img[src*="Chas_logo"] {
+  filter: none;
+}
+  
 /* ── CTA ── */
 .ctas{padding:7rem var(--pad);background:var(--ink);color:var(--paper);display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end}
 .ctas h2{font-family:var(--fd);font-weight:700;font-size:clamp(2.5rem,7vw,7rem);line-height:.9;letter-spacing:-.05em;text-transform:uppercase}
