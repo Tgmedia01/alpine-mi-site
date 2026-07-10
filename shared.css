@@ -33,19 +33,19 @@ a{color:inherit}
 .loader-bot strong{color:var(--paper);font-weight:500}
 
 /* ── NAV ── */
-nav.main-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;gap:2rem;padding:1.5rem var(--pad);transform:translateY(-110%);transition:transform .9s var(--ease-out) .2s;color:var(--paper);mix-blend-mode:difference}
+nav.main-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;gap:2rem;padding:1.5rem var(--pad);transform:translateY(-110%);transition:transform .9s var(--ease-out) .2s,border-color .25s var(--ease);background:#ffffff;border-bottom:1px solid transparent;color:var(--ink)}
 nav.main-nav.in{transform:translateY(0)}
 .logo-a{display:flex;align-items:center;text-decoration:none}
-.logo-a img{height:42px;width:auto;filter:invert(1) brightness(2)}
+.logo-a img{height:42px;width:auto}
 .nav-r{display:flex;gap:2.5rem;align-items:center}
-.nav-r a{font-family:var(--fm);font-size:.7rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);text-decoration:none;position:relative;padding:.3rem 0}
+.nav-r a{font-family:var(--fm);font-size:.7rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);text-decoration:none;position:relative;padding:.3rem 0}
 .nav-r a .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--teal);margin-right:.55rem;vertical-align:middle;opacity:0;transform:scale(0);transition:opacity .3s,transform .3s var(--ease)}
 .nav-r a:hover .dot,.nav-r a.active .dot{opacity:1;transform:scale(1)}
 .nav-r a.active{font-weight:600}
 
 /* ── HAMBURGER BUTTON ── */
 .nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;background:none;border:none;cursor:pointer;padding:4px;flex-shrink:0;z-index:300;position:relative}
-.nav-burger span{display:block;width:22px;height:1.5px;background:var(--paper);transition:transform .4s var(--ease),opacity .3s,width .3s var(--ease);transform-origin:center}
+.nav-burger span{display:block;width:22px;height:1.5px;background:var(--ink);transition:transform .4s var(--ease),opacity .3s,width .3s var(--ease);transform-origin:center}
 .nav-burger span:nth-child(1){width:22px}
 .nav-burger span:nth-child(2){width:14px}
 .nav-burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);width:22px}
@@ -127,16 +127,12 @@ nav.main-nav.in{transform:translateY(0)}
 .acred-lbl::before{content:'';width:8px;height:8px;background:var(--teal);border-radius:50%}
 .acred-row{display:flex;flex-wrap:nowrap;justify-content:flex-start;align-items:center;gap:3rem}
 
-/* base acred item — greyscale + dim, smoothly transitions to full colour */
-.acred-item{display:flex;align-items:center;justify-content:center;height:54px;min-width:90px;transition:filter .35s var(--ease),opacity .35s var(--ease),transform .35s var(--ease);position:relative;filter:grayscale(1);opacity:.5}
-.acred-item:hover{filter:grayscale(0);opacity:1;transform:translateY(-2px)}
+/* base acred item — full colour always */
+.acred-item{display:flex;align-items:center;justify-content:center;height:54px;min-width:90px;transition:transform .35s var(--ease),opacity .35s var(--ease);position:relative;opacity:1}
+.acred-item:hover{transform:translateY(-2px);opacity:.85}
 
-/* all acred logo images — 56px (original 36px + 25% + additional 15%) */
+/* all acred logo images */
 .acred-item img{height:56px;width:auto;max-width:175px;object-fit:contain;display:block}
-
-/* CHAS-specific brightness boost so it reads on dark bg at rest */
-.acred-item img[alt="CHAS accreditation"]{filter:brightness(3) saturate(0)}
-.acred-item:hover img[alt="CHAS accreditation"]{filter:none}
 
 /* placeholder fallback (kept for any pages still using span) */
 .acred-item .placeholder{font-family:var(--fd);font-weight:700;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;border:1.5px solid rgba(255,255,255,.55);padding:.5rem .9rem;line-height:1;text-align:center;color:rgba(255,255,255,.55);transition:border-color .35s,color .35s,background .35s}
