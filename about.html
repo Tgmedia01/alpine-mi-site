@@ -38,6 +38,17 @@ body[data-display="mono"] .ctas h2,
 body[data-display="mono"] .colo h2{font-size:clamp(2.5rem,9vw,10rem)}
 body[data-display="industrial"] .phero-h1{letter-spacing:-0.035em}
 
+/* ── ACCREDITATION LOGO VISIBILITY BOOST ── */
+.acred-item img {
+  filter: grayscale(0) brightness(2.1);
+  opacity: 1 !important;
+  transition: filter 0.3s ease;
+}
+
+.acred-item:hover img[src*="Chas_logo"] {
+  filter: none;
+}
+
 /* ── PALETTE NUDGES ── */
 body[data-palette="cream"]    .intro-r-cap,
 body[data-palette="cream"]    .acred-item:hover .placeholder{color:#F1EADC}
