@@ -10,6 +10,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
+
+ /* ── ACCREDITATION LOGO VISIBILITY BOOST ── */
+.acred-item img {
+  filter: grayscale(0) brightness(2.1);
+  opacity: 1 !important;
+  transition: filter 0.3s ease;
+}
+
+.acred-item:hover img[src*="Chas_logo"] {
+  filter: none;
+}
+  
 /* ── SECTOR PAGE ── */
 .s-intro{display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--rule)}
 .s-intro-l{padding:7rem var(--pad);border-right:1px solid var(--rule);display:flex;flex-direction:column;justify-content:center;gap:1.75rem}
