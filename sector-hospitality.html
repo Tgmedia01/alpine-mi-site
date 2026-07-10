@@ -63,6 +63,17 @@
 .ctas a.cta-link:hover{background:var(--teal);border-color:var(--teal);color:var(--ink);transform:translateY(-2px)}
 .ctas a.cta-link::after{content:'\2197';font-family:var(--fd);font-size:1.1rem}
 
+  /* ── ACCREDITATION LOGO VISIBILITY BOOST ── */
+.acred-item img {
+  filter: grayscale(0) brightness(2.1);
+  opacity: 1 !important;
+  transition: filter 0.3s ease;
+}
+
+.acred-item:hover img[src*="Chas_logo"] {
+  filter: none;
+}
+
 @media(max-width:1100px){
   .s-cap-grid{grid-template-columns:repeat(2,1fr)}
   .s-proj-grid{grid-template-columns:repeat(2,1fr)}
